@@ -5,3 +5,5 @@ This desktop application is developed based on the GUI framework JavaFX. The use
 
 10.03.2020: Recherche bezüglich der Entwicklung mit Java FX, erstellen des Java FX Projekts, 
 implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
+
+11.03.2020: Experimentieren mit Lambda Expressions und BorderPane
