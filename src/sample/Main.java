@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Main extends Application implements EventHandler<ActionEvent> {
+public class Main extends Application {
 
     Button button;
 
@@ -19,7 +19,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
         button = new Button("Start"); //create button and set label
-        button.setOnAction(this); //whenever the user clicks the button the code to handle it is in *this* class, instead of a separate one
+        button.setOnAction(e -> System.out.println("test")); //whenever the user clicks the button the code to handle it is in *this* class, instead of a separate one
 
         StackPane layout = new StackPane(); //simple layout
         layout.getChildren().add(button); //add button to layout
@@ -35,10 +35,4 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         launch(args);
     }
 
-    @Override
-    public void handle(ActionEvent actionEvent) { //handle user event
-        if (actionEvent.getSource() == button) { //check which button was pressed
-            System.out.println("test");
-        }
-    }
 }
