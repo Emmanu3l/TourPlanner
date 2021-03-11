@@ -7,26 +7,40 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Button button;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Tour Planner");
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        button = new Button("Start"); //create button and set label
-        button.setOnAction(e -> System.out.println("test")); //whenever the user clicks the button the code to handle it is in *this* class, instead of a separate one
+        HBox topMenu = new HBox();
+        Button fileButton = new Button("File");
+        Button editButton = new Button("Edit");
+        Button optionsButton = new Button("Options");
+        Button helpButton = new Button("Help");
+        topMenu.getChildren().addAll(fileButton, editButton, optionsButton, helpButton);
 
-        StackPane layout = new StackPane(); //simple layout
-        layout.getChildren().add(button); //add button to layout
+        VBox leftMenu = new VBox();
+        Button createTour = new Button("Create Tour");
+        Button modifyTour = new Button("Modify Tour");
+        Button deleteTour = new Button("Delete Tour");
+        Button copyTour = new Button("Copy Tour");
+        leftMenu.getChildren().addAll(createTour, modifyTour, deleteTour, copyTour);
 
-        primaryStage.setTitle("Tour Planner");
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
         //primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.setScene(new Scene(layout, 300, 275));
+        primaryStage.setScene(new Scene(borderPane, 300, 275));
         primaryStage.show();
     }
 
