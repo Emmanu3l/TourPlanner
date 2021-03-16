@@ -45,21 +45,34 @@
             <Button text="+"/>
             <Button text="-"/>
             <Button text="[]"/>
-            <Label text="- Tour 1\n"/>
-            <Label text="- Tour 2\n"/>
-            <Label text="- Tour 3\n"/>
+            <VBox>
+                <Label text="- Tour 1"/>
+                <Label text="- Tour 2"/>
+                <Label text="- Tour 3"/>
+            </VBox>
         </HBox>
         <SplitPane>
             <VBox>
                 <Label text="Title: " GridPane.columnIndex="1" />
-                <TextField text="Name the tour" GridPane.columnIndex="1" />
-                <Button fx:id="createTour" onAction="#handleCreateTour" text="Create Tour" GridPane.columnIndex="1" />
+                <!--<TextField text="Name the tour" GridPane.columnIndex="1" />
+                <Button fx:id="createTour" onAction="#handleCreateTour" text="Create Tour" GridPane.columnIndex="1" />-->
+                <TabPane>
+                    <Tab text="Route"/>
+                    <Tab text="Description"/>
+                </TabPane>
             </VBox>
             <VBox>
                 <Label text="Logs"/>
                 <Button text="+"/>
                 <Button text="-"/>
                 <Button text="[]"/>
+                <TableView>
+                    <columns>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Duration"/>
+                        <TableColumn text="Distance"/>
+                    </columns>
+                </TableView>
             </VBox>
         </SplitPane>
     </SplitPane>
