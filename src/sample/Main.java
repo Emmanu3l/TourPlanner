@@ -20,12 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Tour Planner");
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        /*HBox topMenu = new HBox();
-        Button fileButton = new Button("File");
-        Button editButton = new Button("Edit");
-        Button optionsButton = new Button("Options");
-        Button helpButton = new Button("Help");
-        topMenu.getChildren().addAll(fileButton, editButton, optionsButton, helpButton);
+        /*
 
         VBox leftMenu = new VBox();
         Button createTour = new Button("Create Tour");
