@@ -3,76 +3,84 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-<VBox prefHeight="720" prefWidth="1280" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller">
+<VBox prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <MenuBar>
         <Menu text="File">
-            <MenuItem text="Bla"/>
-            <MenuItem text="Bli"/>
-            <MenuItem text="Blu"/>
-            <MenuItem text="Ble"/>
-            <MenuItem text="Blo"/>
+            <MenuItem text="Bla" />
+            <MenuItem text="Bli" />
+            <MenuItem text="Blu" />
+            <MenuItem text="Ble" />
+            <MenuItem text="Blo" />
         </Menu>
         <Menu text="Edit">
-            <MenuItem text="Bla"/>
-            <MenuItem text="Bli"/>
-            <MenuItem text="Blu"/>
-            <MenuItem text="Ble"/>
-            <MenuItem text="Blo"/>
+            <MenuItem text="Bla" />
+            <MenuItem text="Bli" />
+            <MenuItem text="Blu" />
+            <MenuItem text="Ble" />
+            <MenuItem text="Blo" />
         </Menu>
         <Menu text="Options">
-            <MenuItem text="Bla"/>
-            <MenuItem text="Bli"/>
-            <MenuItem text="Blu"/>
-            <MenuItem text="Ble"/>
-            <MenuItem text="Blo"/>
+            <MenuItem text="Bla" />
+            <MenuItem text="Bli" />
+            <MenuItem text="Blu" />
+            <MenuItem text="Ble" />
+            <MenuItem text="Blo" />
         </Menu>
         <Menu text="Help">
-            <MenuItem text="Bla"/>
-            <MenuItem text="Bli"/>
-            <MenuItem text="Blu"/>
-            <MenuItem text="Ble"/>
-            <MenuItem text="Blo"/>
+            <MenuItem text="Bla" />
+            <MenuItem text="Bli" />
+            <MenuItem text="Blu" />
+            <MenuItem text="Ble" />
+            <MenuItem text="Blo" />
         </Menu>
     </MenuBar>
     <HBox>
-        <TextField text="Search"/>
-        <Button text="Submit"/>
+        <TextField prefHeight="25.0" prefWidth="1221.0" text="Search" />
+        <Button fx:id="search" onAction="#handleSearch" text="Submit" />
     </HBox>
-    <SplitPane>
-        <HBox>
-            <Label text="Tours"/>
-            <Button text="+"/>
-            <Button text="-"/>
-            <Button text="[]"/>
+    <SplitPane dividerPositions="0.2">
+        <VBox prefHeight="752.0" prefWidth="253.0">
+            <HBox prefHeight="0.0" prefWidth="253.0">
+                <Label text="Tours" />
+                <Button text="+" />
+                <Button text="-" />
+                <Button text="[]" />
+            </HBox>
             <VBox>
-                <Label text="- Tour 1"/>
-                <Label text="- Tour 2"/>
-                <Label text="- Tour 3"/>
+                <Label text="- Tour 1" />
+                <Label text="- Tour 2" />
+                <Label text="- Tour 3" />
             </VBox>
-        </HBox>
-        <SplitPane>
+        </VBox>
+        <SplitPane dividerPositions="0.5">
             <VBox>
-                <Label text="Title: " GridPane.columnIndex="1" />
-                <!--<TextField text="Name the tour" GridPane.columnIndex="1" />
-                <Button fx:id="createTour" onAction="#handleCreateTour" text="Create Tour" GridPane.columnIndex="1" />-->
-                <TabPane>
-                    <Tab text="Route"/>
-                    <Tab text="Description"/>
-                </TabPane>
-            </VBox>
-            <VBox>
-                <Label text="Logs"/>
-                <Button text="+"/>
-                <Button text="-"/>
-                <Button text="[]"/>
-                <TableView>
-                    <columns>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Duration"/>
-                        <TableColumn text="Distance"/>
-                    </columns>
-                </TableView>
+                <VBox>
+                    <HBox>
+                        <Label text="Title: " GridPane.columnIndex="1" />
+                        <TextField text="Name the tour" GridPane.columnIndex="1" />
+
+                    </HBox>
+                    <TabPane>
+                        <Tab text="Route" />
+                        <Tab text="Description" />
+                    </TabPane>
+                    <TextField prefHeight="79.0" prefWidth="971.0" text="Write your text here" />
+                </VBox>
+                <VBox>
+                    <HBox prefHeight="0.0" prefWidth="1019.0">
+                        <Label text="Logs:" />
+                            <Button text="+" />
+                            <Button text="-" />
+                            <Button text="[]" />
+                    </HBox>
+                    <TableView prefHeight="475.0" prefWidth="1019.0">
+                        <columns>
+                            <TableColumn text="Date" />
+                            <TableColumn text="Duration" />
+                            <TableColumn text="Distance" />
+                        </columns>
+                    </TableView>
+                </VBox>
             </VBox>
         </SplitPane>
     </SplitPane>

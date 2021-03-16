@@ -4,10 +4,10 @@ import javafx.scene.control.Button;
 
 public class Controller {
 
-    public Button createTour;
+    public Button search;
 
-    public void handleCreateTour() {
-        createTour.setText("Tour created");
+    public void handleSearch() {
+        search.setText("Results found");
     }
 
 }
