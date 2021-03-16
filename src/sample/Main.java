@@ -19,23 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Tour Planner");
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(8); //set vertical spacing
-        grid.setHgap(10); //set horizontal spacing
-
-        Label titleLabel = new Label("Title: ");
-        GridPane.setConstraints(titleLabel, 0, 0);
-
-        //TextField titleInput = new TextField("Name the tour");
-        TextField titleInput = new TextField();
-        titleInput.setPromptText("Name the tour");
-        GridPane.setConstraints(titleInput, 1, 0);
-
-        grid.getChildren().addAll(titleLabel, titleInput);
-
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         /*HBox topMenu = new HBox();
         Button fileButton = new Button("File");
         Button editButton = new Button("Edit");
@@ -54,8 +38,8 @@ public class Main extends Application {
         borderPane.setTop(topMenu);
         borderPane.setLeft(leftMenu);*/
 
-        //primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.setScene(new Scene(grid, 300, 275));
+        primaryStage.setScene(new Scene(root, 300, 275));
+        //primaryStage.setScene(new Scene(grid, 300, 275));
         primaryStage.show();
     }
 

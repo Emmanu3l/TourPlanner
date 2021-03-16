@@ -7,3 +7,5 @@ This desktop application is developed based on the GUI framework JavaFX. The use
 implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 
 11.03.2020: Experimentieren mit Lambda Expressions und BorderPane
+
+16.03.2020: FXML
