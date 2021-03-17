@@ -33,7 +33,7 @@ public class Main extends Application {
         borderPane.setTop(topMenu);
         borderPane.setLeft(leftMenu);*/
 
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1280, 720));
         //primaryStage.setScene(new Scene(grid, 300, 275));
         primaryStage.show();
     }

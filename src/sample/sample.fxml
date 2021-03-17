@@ -35,7 +35,7 @@
         </Menu>
     </MenuBar>
     <HBox>
-        <TextField prefHeight="25.0" prefWidth="1221.0" text="Search" />
+        <TextField prefHeight="25.0" prefWidth="1221.0" promptText="Search" />
         <Button fx:id="search" onAction="#handleSearch" text="Submit" />
     </HBox>
     <SplitPane dividerPositions="0.2">
@@ -57,14 +57,14 @@
                 <VBox>
                     <HBox>
                         <Label text="Title: " GridPane.columnIndex="1" />
-                        <TextField text="Name the tour" GridPane.columnIndex="1" />
+                        <TextField promptText="Name the tour" GridPane.columnIndex="1" />
 
                     </HBox>
                     <TabPane>
                         <Tab text="Route" />
                         <Tab text="Description" />
                     </TabPane>
-                    <TextField prefHeight="79.0" prefWidth="971.0" text="Write your text here" />
+                    <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your text here" />
                 </VBox>
                 <VBox>
                     <HBox prefHeight="0.0" prefWidth="1019.0">
