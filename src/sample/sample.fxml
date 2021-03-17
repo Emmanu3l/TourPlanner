@@ -35,16 +35,16 @@
         </Menu>
     </MenuBar>
     <HBox>
-        <TextField prefHeight="25.0" prefWidth="1221.0" promptText="Search" />
+        <TextField prefHeight="25.0" prefWidth="1176.0" promptText="Search" />
         <Button fx:id="search" onAction="#handleSearch" text="Submit" />
     </HBox>
     <SplitPane dividerPositions="0.2">
         <VBox prefHeight="752.0" prefWidth="253.0">
             <HBox prefHeight="0.0" prefWidth="253.0">
-                <Label text="Tours" />
-                <Button text="+" />
-                <Button text="-" />
-                <Button text="[]" />
+                <Label text="Tours: " />
+                <Button fx:id="addTour" onAction="#handleAddTour" text="+" />
+                <Button fx:id="removeTour" onAction="#handleRemoveTour" text="-" />
+                <Button fx:id="modifyTour" onAction="#handleModifyTour" text="[]" />
             </HBox>
             <VBox>
                 <Label text="- Tour 1" />
@@ -52,7 +52,7 @@
                 <Label text="- Tour 3" />
             </VBox>
         </VBox>
-        <SplitPane dividerPositions="0.5">
+        <SplitPane>
             <VBox>
                 <VBox>
                     <HBox>
@@ -71,10 +71,10 @@
                 </VBox>
                 <VBox>
                     <HBox prefHeight="0.0" prefWidth="1019.0">
-                        <Label text="Logs:" />
-                            <Button text="+" />
-                            <Button text="-" />
-                            <Button text="[]" />
+                        <Label text="Logs: " />
+                            <Button fx:id="addLog" onAction="#handleAddLog"  text="+" />
+                            <Button fx:id="removeLog" onAction="#handleRemoveLog" text="-" />
+                            <Button fx:id="modifyLog" onAction="#handleModifyLog" text="[]" />
                     </HBox>
                     <TableView prefHeight="475.0" prefWidth="1019.0">
                         <columns>
