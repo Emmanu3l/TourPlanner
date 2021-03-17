@@ -60,11 +60,14 @@
                         <TextField promptText="Name the tour" GridPane.columnIndex="1" />
 
                     </HBox>
-                    <TabPane>
-                        <Tab text="Route" />
-                        <Tab text="Description" />
+                    <TabPane tabClosingPolicy="UNAVAILABLE">
+                        <Tab text="Route">
+                            <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />
+                        </Tab>
+                        <Tab text="Description">
+                            <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
+                        </Tab>
                     </TabPane>
-                    <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your text here" />
                 </VBox>
                 <VBox>
                     <HBox prefHeight="0.0" prefWidth="1019.0">
