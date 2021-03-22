@@ -1,4 +1,4 @@
-package tourplanner;
+package views;
 
 import javafx.scene.control.Button;
 

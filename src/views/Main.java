@@ -1,4 +1,4 @@
-package tourplanner;
+package views;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,21 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Tour Planner");
         Parent root = FXMLLoader.load(getClass().getResource("tourplanner.fxml"));
-        /*
-
-        VBox leftMenu = new VBox();
-        Button createTour = new Button("Create Tour");
-        Button modifyTour = new Button("Modify Tour");
-        Button deleteTour = new Button("Delete Tour");
-        Button copyTour = new Button("Copy Tour");
-        leftMenu.getChildren().addAll(createTour, modifyTour, deleteTour, copyTour);*/
-
-        /*BorderPane borderPane = new BorderPane();
-        borderPane.setTop(topMenu);
-        borderPane.setLeft(leftMenu);*/
-
         primaryStage.setScene(new Scene(root, 1280, 720));
-        //primaryStage.setScene(new Scene(grid, 300, 275));
         primaryStage.show();
     }
 
