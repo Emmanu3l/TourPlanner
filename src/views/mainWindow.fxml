@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.Controller">
+<VBox prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainWindowController">
     <MenuBar>
         <Menu text="File">
             <MenuItem text="Bla" />
@@ -36,15 +36,15 @@
     </MenuBar>
     <HBox>
         <TextField prefHeight="25.0" prefWidth="1176.0" promptText="Search" />
-        <Button fx:id="search" onAction="#handleSearch" text="Submit" />
+        <Button fx:id="search" onAction="#searchAction" text="Submit" />
     </HBox>
     <SplitPane dividerPositions="0.2">
         <VBox prefHeight="752.0" prefWidth="253.0">
             <HBox prefHeight="0.0" prefWidth="253.0">
                 <Label text="Tours: " />
-                <Button fx:id="addTour" onAction="#handleAddTour" text="+" />
-                <Button fx:id="removeTour" onAction="#handleRemoveTour" text="-" />
-                <Button fx:id="modifyTour" onAction="#handleModifyTour" text="[]" />
+                <Button fx:id="addTour" onAction="#addTourAction" text="+" />
+                <Button fx:id="removeTour" onAction="#removeTourAction" text="-" />
+                <Button fx:id="modifyTour" onAction="#modifyTourAction" text="[]" />
             </HBox>
             <VBox>
                 <Label text="- Tour 1" />
@@ -72,9 +72,9 @@
                 <VBox>
                     <HBox prefHeight="0.0" prefWidth="1019.0">
                         <Label text="Logs: " />
-                            <Button fx:id="addLog" onAction="#handleAddLog"  text="+" />
-                            <Button fx:id="removeLog" onAction="#handleRemoveLog" text="-" />
-                            <Button fx:id="modifyLog" onAction="#handleModifyLog" text="[]" />
+                            <Button fx:id="addLog" onAction="#addLogAction" text="+" />
+                            <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
+                            <Button fx:id="modifyLog" onAction="#modifyLogAction" text="[]" />
                     </HBox>
                     <TableView prefHeight="475.0" prefWidth="1019.0">
                         <columns>

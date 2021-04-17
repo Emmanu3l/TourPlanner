@@ -2,7 +2,7 @@ package views;
 
 import javafx.scene.control.Button;
 
-public class Controller {
+public class MainWindowController {
 
     public Button search;
 
@@ -15,33 +15,33 @@ public class Controller {
     public Button modifyLog;
 
 
-    public void handleSearch() {
+    public void searchAction() {
         search.setText("Results found");
     }
 
 
-    public void handleAddLog() {
+    public void addLogAction() {
         System.out.println("pressed");
     }
 
-    public void handleRemoveLog() {
+    public void removeLogAction() {
         System.out.println("pressed");
     }
 
-    public void handleModifyLog() {
+    public void modifyLogAction() {
         System.out.println("pressed");
     }
 
 
-    public void handleAddTour() {
+    public void addTourAction() {
         System.out.println("pressed");
     }
 
-    public void handleRemoveTour() {
+    public void removeTourAction() {
         System.out.println("pressed");
     }
 
-    public void handleModifyTour() {
+    public void modifyTourAction() {
         System.out.println("pressed");
     }
 
