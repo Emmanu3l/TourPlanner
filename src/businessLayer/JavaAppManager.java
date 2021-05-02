@@ -1,4 +1,4 @@
-package businessLogic;
+package businessLayer;
 
 public interface JavaAppManager {
 }
