@@ -37,7 +37,9 @@
     <HBox>
         <TextField prefHeight="25.0" prefWidth="1176.0" promptText="Search" />
         <Button fx:id="search" onAction="#searchAction" text="Submit" />
+        <Button fx:id="clear" onAction="#clearAction" text="Clear" />
     </HBox>
+    <ListView fx:id="listTourItems" />
     <SplitPane dividerPositions="0.2">
         <VBox prefHeight="752.0" prefWidth="253.0">
             <HBox prefHeight="0.0" prefWidth="253.0">

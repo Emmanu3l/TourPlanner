@@ -1,4 +1,14 @@
 package businessLayer;
 
-public class JavaAppManagerFactory {
+public final class JavaAppManagerFactory {
+
+    private static JavaAppManager manager;
+
+    public static JavaAppManager GetManager() {
+        if (manager == null) {
+            manager = new JavaAppManagerImpl();
+        }
+        return manager;
+    }
+
 }
