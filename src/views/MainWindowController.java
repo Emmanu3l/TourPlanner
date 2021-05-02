@@ -1,8 +1,12 @@
 package views;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class MainWindowController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainWindowController implements Initializable {
 
     public Button search;
 
@@ -13,6 +17,8 @@ public class MainWindowController {
     public Button addLog;
     public Button removeLog;
     public Button modifyLog;
+
+    //public ListView<TourItem> listTourItems;
 
 
     public void searchAction() {
@@ -45,4 +51,8 @@ public class MainWindowController {
         System.out.println("pressed");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

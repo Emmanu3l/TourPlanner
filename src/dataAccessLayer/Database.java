@@ -1,4 +1,4 @@
 package dataAccessLayer;
 
-public class DbConnection {
+public class Database {
 }
