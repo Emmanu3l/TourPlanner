@@ -35,7 +35,7 @@
         </Menu>
     </MenuBar>
     <HBox>
-        <TextField prefHeight="25.0" prefWidth="1176.0" promptText="Search" />
+        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="1176.0" promptText="Search" />
         <Button fx:id="search" onAction="#searchAction" text="Submit" />
         <Button fx:id="clear" onAction="#clearAction" text="Clear" />
     </HBox>
