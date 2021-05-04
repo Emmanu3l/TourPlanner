@@ -11,3 +11,5 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 16.03.2020: Erstmaliges experimentieren mit FXML (ca. 3 Stunden)
 
 17.03.2020: Etwas mehr Feinschliff beim fxml file (ca. 2 Stunden)
+
+2.05.2020: Abschließen der Implementierung des Inhalts der im Video "SWEI - JavaFxIntro" präsentiert wurde
