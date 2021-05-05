@@ -1,4 +1,4 @@
-package businessLayer;
+package businesslayer;
 
 import models.TourItem;
 

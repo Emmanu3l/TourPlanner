@@ -1,7 +1,4 @@
-package dataAccessLayer.common;
-
-import models.TourItem;
-import models.TourLog;
+package dataaccesslayer.common;
 
 import java.util.ArrayList;
 import java.util.List;

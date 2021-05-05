@@ -1,7 +1,7 @@
 package views;
 
-import businessLayer.JavaAppManager;
-import businessLayer.JavaAppManagerFactory;
+import businesslayer.JavaAppManager;
+import businesslayer.JavaAppManagerFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import models.TourItem;
 
 import java.net.URL;
-import java.text.Normalizer;
 import java.util.List;
 import java.util.ResourceBundle;
 

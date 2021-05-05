@@ -1,4 +1,4 @@
-package dataAccessLayer.common;
+package dataaccesslayer.common;
 
 import models.TourItem;
 import models.TourTypes;
