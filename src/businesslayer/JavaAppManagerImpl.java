@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 
 public class JavaAppManagerImpl implements JavaAppManager {
 
-    TourItemDAO tourItemDAO = new TourItemDAO();
+    //TourItemDAO tourItemDAO = new TourItemDAO();
 
     @Override
     public List<TourItem> GetItems() {
-        return tourItemDAO.GetItems();
+        //return tourItemDAO.GetItems();
+        return null;
     }
 
     @Override
