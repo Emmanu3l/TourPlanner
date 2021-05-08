@@ -14,6 +14,10 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 
 02.05.2021: Abschließen der Implementierung des Inhalts welcher im Video "SWEI - JavaFxIntro" präsentiert wurde (ca. 4 Stunden)
 
-05.05.2021: Beginnen der Implementierung des Inhalts welcher im Video "JavaFX Intro - Wie implementiert man DAL?" präsentiert wurde (ca. 4 Stunden)
+05.05.2021: Beginnen der Implementierung des Inhalts welcher im Video "JavaFX Intro - Wie implementiert man DAL?" präsentiert wurde (ca. 3 Stunden)
 
-06.05.2021: Fortsetzung der Implementierung
+06.05.2021: Fortsetzung der Implementierung (ca. 3 Stunden)
+
+07.05.2021: Fortsetzung der Implementierung (ca. 2 Stunden)
+
+08.05.2021: Fortsetzung der Implementierung 

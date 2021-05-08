@@ -73,7 +73,7 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public <T> List<T> TourReader(String sqlQuery, T tourType) throws SQLException {
+    public <T> List<T> TourReader(String sqlQuery, Class<T> tourType) throws SQLException {
         try (Connection connection = CreateConnection();
              // normales select statement statt prepared statement
              // statement ausführen und result set auslesen
@@ -83,10 +83,10 @@ public class Database implements IDatabase {
 
             ResultSet result = statement.executeQuery(sqlQuery);
             // entweder TourItems oder TourLogs werden zurückgegegeben
-            if (tourType instanceof TourItem) {
+            if (tourType.getTypeName().equals(TourItem.class.getName())) {
                 return (List<T>) QueryTourItemDataFromResultSet(result);
             }
-            if (tourType instanceof TourLog) {
+            if (tourType.getTypeName().equals(TourLog.class.getName())) {
                 return (List<T>) QueryTourLogDataFromResultSet(result);
             }
 
@@ -97,7 +97,7 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public <T> List<T> TourReader(String sqlQuery, ArrayList<Object> parameters, T tourType) throws SQLException {
+    public <T> List<T> TourReader(String sqlQuery, ArrayList<Object> parameters, Class<T> tourType) throws SQLException {
         try (Connection connection = CreateConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -108,10 +108,10 @@ public class Database implements IDatabase {
             }
 
             ResultSet result = preparedStatement.executeQuery();
-            if (tourType instanceof TourItem) {
+            if (tourType.getTypeName().equals(TourItem.class.getName())) {
                 return (List<T>) QueryTourItemDataFromResultSet(result);
             }
-            if (tourType instanceof TourLog) {
+            if (tourType.getTypeName().equals(TourLog.class.getName())) {
                 return (List<T>) QueryTourLogDataFromResultSet(result);
             }
         } catch (SQLException e) {
