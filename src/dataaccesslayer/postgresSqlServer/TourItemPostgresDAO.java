@@ -23,11 +23,7 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     private IDatabase database;
 
     public TourItemPostgresDAO() {
-        //database = DALFactory.CreateDatabase();
-    }
-
-    public TourItemPostgresDAO(IDatabase database) {
-        this.database = database;
+        database = DALFactory.CreateDatabase();
     }
 
     @Override
