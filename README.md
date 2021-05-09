@@ -20,4 +20,6 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 
 07.05.2021: Fortsetzung der Implementierung (ca. 2 Stunden)
 
-08.05.2021: Fortsetzung der Implementierung 
+08.05.2021: Fortsetzung der Implementierung (ca. 2 Stunden)
+
+09.05.2021: Fortsetzung der Implementierung
