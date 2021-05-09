@@ -2,6 +2,8 @@ package views;
 
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
+import businesslayer.NameGenerator;
+import dataaccesslayer.common.DALFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,9 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import lombok.SneakyThrows;
 import models.TourItem;
+import models.TourLog;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,6 +42,7 @@ public class MainWindowController implements Initializable {
     private TourItem currentItem;
     private JavaAppManager manager;
 
+    @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -47,7 +54,7 @@ public class MainWindowController implements Initializable {
 
     }
 
-    private void SetupListView() {
+    private void SetupListView() throws SQLException {
         tourItems = FXCollections.observableArrayList();
         tourItems.addAll(manager.GetItems());
         listTourItems.setItems(tourItems);
@@ -77,7 +84,7 @@ public class MainWindowController implements Initializable {
         }));
     }
 
-    public void searchAction() {
+    public void searchAction() throws SQLException {
         tourItems.clear();
 
         List<TourItem> items = manager.Search(searchField.textProperty().getValue(), false);
@@ -85,12 +92,21 @@ public class MainWindowController implements Initializable {
         //search.setText("Results found");
     }
 
-    public void clearAction(ActionEvent actionEvent) {
+    public void clearAction(ActionEvent actionEvent) throws SQLException {
         tourItems.clear();
         searchField.textProperty().setValue("");
 
         List<TourItem> items = manager.GetItems();
         tourItems.addAll(items);
+    }
+
+    public void genItemAction(ActionEvent actionEvent) throws SQLException {
+        TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), LocalDateTime.now());
+        tourItems.add(genItem);
+    }
+
+    public void genLogAction(ActionEvent actionEvent) throws SQLException {
+        TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
     }
 
     public void addLogAction() {
@@ -117,6 +133,4 @@ public class MainWindowController implements Initializable {
     public void modifyTourAction() {
         System.out.println("pressed");
     }
-
-
 }

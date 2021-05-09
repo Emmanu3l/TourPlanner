@@ -5,6 +5,7 @@ import dataaccesslayer.common.IDatabase;
 import dataaccesslayer.dao.ITourItemDAO;
 import models.TourItem;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class TourItemPostgresDAO implements ITourItemDAO {
 
     private IDatabase database;
 
-    public TourItemPostgresDAO() {
+    public TourItemPostgresDAO() throws FileNotFoundException {
         database = DALFactory.GetDatabase();
     }
 

@@ -7,18 +7,13 @@ import dataaccesslayer.postgresSqlServer.Database;
 import dataaccesslayer.postgresSqlServer.TourItemPostgresDAO;
 import dataaccesslayer.postgresSqlServer.TourLogPostgresDAO;
 
-public class DALFactory {
-    //TODO
+import java.io.FileNotFoundException;
 
-    private static String packageName;
+public class DALFactory {
+
     private static IDatabase database;
 
-
-    public static void Init() {
-        packageName = ConfigurationManager.GetConfigProperty("DALSqlPackage");
-    }
-
-    public static IDatabase GetDatabase() {
+    public static IDatabase GetDatabase() throws FileNotFoundException {
         // wenn die database null ist, dann eine neue anlegen
         if (database == null) {
             database = CreateDatabase();
@@ -26,7 +21,7 @@ public class DALFactory {
         return database;
     }
 
-    private static IDatabase CreateDatabase() {
+    private static IDatabase CreateDatabase() throws FileNotFoundException {
         String connectionString = ConfigurationManager.GetConfigProperty("PostgresSqlConnectionString");
         return CreateDatabase(connectionString);
     }
@@ -36,7 +31,7 @@ public class DALFactory {
         // überprüfen ob es in unserem package eine klasse mit dem namen gibt
         // dann instanz generieren lassen und zurückgeben
         try {
-            Class<Database> cls = (Class<Database>) Class.forName(packageName + "." + Database.class.getName());
+            Class<Database> cls = (Class<Database>) Class.forName(Database.class.getName());
             // konstruktor mit dem parameter string, mit neuere instanz aufrufen, welche den connectionString erhält
             return cls.getConstructor(String.class).newInstance(connectionString);
         } catch (Exception e) {
@@ -48,7 +43,7 @@ public class DALFactory {
     // für touritem und tourlogs daos automatisch per reflection generieren lassen
     public static ITourItemDAO CreateTourItemDAO() {
         try {
-            Class<TourItemPostgresDAO> cls = (Class<TourItemPostgresDAO>) Class.forName(packageName + "." + TourItemPostgresDAO.class.getName());
+            Class<TourItemPostgresDAO> cls = (Class<TourItemPostgresDAO>) Class.forName(TourItemPostgresDAO.class.getName());
             return cls.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +53,7 @@ public class DALFactory {
 
     public static ITourLogDAO CreateTourLogDAO() {
         try {
-            Class<TourLogPostgresDAO> cls = (Class<TourLogPostgresDAO>) Class.forName(packageName + "." + TourLogPostgresDAO.class.getName());
+            Class<TourLogPostgresDAO> cls = (Class<TourLogPostgresDAO>) Class.forName(TourLogPostgresDAO.class.getName());
             return cls.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();

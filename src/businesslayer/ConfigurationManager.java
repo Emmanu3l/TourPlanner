@@ -1,28 +1,27 @@
 package businesslayer;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigurationManager {
-    public static String GetConfigProperty(String propertyName) {
+    public static String GetConfigProperty(String propertyName) throws FileNotFoundException {
         Properties prop = new Properties();
         String propFileName = "config.properties";
 
-        //InputStream inputStream = ConfigurationManager.class.getResourceAsStream(propFileName);
-        InputStream inputStream = ConfigurationManager.class.getClassLoader().getResourceAsStream(propFileName);
+        InputStream inputStream = new FileInputStream(propFileName);
 
         // wenn etwas gefunden wurde
-        if (inputStream != null) {
-            try {
-                prop.load(inputStream);
-                return prop.getProperty(propertyName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            prop.load(inputStream);
+            return prop.getProperty(propertyName);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         // return empty string
-        return "";
+        throw new FileNotFoundException(propFileName + " was not found.");
     }
 
 }

@@ -7,6 +7,7 @@ import dataaccesslayer.dao.ITourLogDAO;
 import models.TourItem;
 import models.TourLog;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     private IDatabase database;
     private ITourItemDAO tourItemDAO;
 
-    public TourLogPostgresDAO() {
+    public TourLogPostgresDAO() throws FileNotFoundException {
         this.database = DALFactory.GetDatabase();
         this.tourItemDAO = DALFactory.CreateTourItemDAO();
     }
