@@ -1,5 +1,6 @@
 package dataaccesslayer.common;
 
+import businesslayer.ConfigurationManager;
 import dataaccesslayer.dao.ITourItemDAO;
 import dataaccesslayer.dao.ITourLogDAO;
 import dataaccesslayer.postgresSqlServer.Database;
