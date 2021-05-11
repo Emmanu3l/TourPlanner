@@ -22,4 +22,8 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 
 08.05.2021: Fortsetzung der Implementierung (ca. 2 Stunden)
 
-09.05.2021: Fortsetzung der Implementierung
+09.05.2021: Fortsetzung der Implementierung (ca. 2 Stunden)
+
+10.05.2021: Probleme mit der DB (ca. 2 Stunden)
+
+11.05.2021: Lösen der Probleme mit der DB, Abschließen der Implementierung des Inhalts der ersten zwei Stunden des DAL Tutorials (ca. 2 Stunden)

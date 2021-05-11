@@ -35,6 +35,8 @@ public class MainWindowController implements Initializable {
     public Button removeLog;
     public Button modifyLog;
 
+    public Button genLog;
+
     public TextField searchField;
     public ListView<TourItem> listTourItems;
 
@@ -52,6 +54,8 @@ public class MainWindowController implements Initializable {
         FormatCells();
         SetCurrentItem();
 
+        // log sollte nur generierbar sein wenn ein item ausgewählt ist
+        genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
     }
 
     private void SetupListView() throws SQLException {

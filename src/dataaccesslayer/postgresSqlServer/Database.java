@@ -1,5 +1,6 @@
 package dataaccesslayer.postgresSqlServer;
 
+import dataaccesslayer.common.DALFactory;
 import dataaccesslayer.common.IDatabase;
 import dataaccesslayer.dao.ITourItemDAO;
 import models.TourItem;
@@ -14,7 +15,6 @@ import java.util.List;
 public class Database implements IDatabase {
 
     private String connectionString; // verbindung zur datenbank aufbauen
-    private ITourItemDAO tourItemDAO;
 
     public Database(String connectionString) {
         this.connectionString = connectionString;
@@ -141,6 +141,7 @@ public class Database implements IDatabase {
 
     private List<TourLog> QueryTourLogDataFromResultSet(ResultSet result) throws SQLException {
         List<TourLog> tourLogList = new ArrayList<TourLog>();
+        ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
 
         while(result.next()) {
             tourLogList.add(new TourLog(

@@ -35,11 +35,11 @@
         </Menu>
     </MenuBar>
     <HBox>
-        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="1000.0" promptText="Search" />
-        <Button fx:id="search" onAction="#searchAction" text="Submit" />
-        <Button fx:id="clear" onAction="#clearAction" text="Clear" />
-        <Button fx:id="genItem" onAction="#genItemAction" text="RandItem" />
-        <Button fx:id="genLog" onAction="#genLogAction" text="RandLog" />
+        <TextField fx:id="searchField" prefHeight="25.0" prefWidth="800.0" promptText="Search" />
+        <Button fx:id="search" onAction="#searchAction" text="Search" />
+        <Button fx:id="clear" onAction="#clearAction" text="Clear search" />
+        <Button fx:id="genItem" onAction="#genItemAction" text="Generate Random Item" />
+        <Button fx:id="genLog" onAction="#genLogAction" text="Generate Random Log" />
     </HBox>
     <ListView fx:id="listTourItems" />
     <SplitPane dividerPositions="0.2">

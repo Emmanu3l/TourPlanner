@@ -1,1 +1,5 @@
 CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Url" text, "CreationTime" text);
+CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "LogText" text, "TourItemId" integer);
+
+SELECT * FROM public."TourItems";
+SELECT * FROM public."TourLogs";
