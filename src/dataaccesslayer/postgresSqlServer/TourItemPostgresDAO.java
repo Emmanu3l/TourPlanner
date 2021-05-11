@@ -17,9 +17,9 @@ public class TourItemPostgresDAO implements ITourItemDAO {
 
     // was man bei einem data access object immer machen muss: sql statements festlegen
     // strichpunkt in sql statement nicht vergessen!
-    private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourItems\" WHERE \"ID\"=CAST(? AS INTEGER);";
+    private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
     private final String SQL_GET_ALL_ITEMS = "SELECT * FROM public.\"TourItems\";";
-    private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Url\",\"CreationDate\") VALUES (?, ?, ?);";
+    private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Url\",\"CreationTime\") VALUES (?, ?, ?);";
 
     private IDatabase database;
 

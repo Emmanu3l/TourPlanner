@@ -1,0 +1,1 @@
+CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Url" text, "CreationTime" text);
