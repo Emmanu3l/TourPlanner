@@ -23,6 +23,15 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
+    //TODO: allow manually adding, removing and editing logs and tours
+    //TODO: implement at least 20 unit tests (JUnit)
+    //TODO: HTTP for MapQuest
+    //TODO: Logginglog4j
+    //TODO: report-generation library of choice
+
+    //TODO: [NameGenerator.java] possibly remove single and three letter syllables so you can guarantee a certain length
+    //TODO: [Database.java] ADD CREATE, DROP, SELECT STATEMENTS TO DAO CLASSES AND MAKE THEM ACCESSIBLE AS A FUNCTION
+
     public Button search;
     public Button clear;
 

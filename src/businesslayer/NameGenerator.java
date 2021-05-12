@@ -11,7 +11,6 @@ public class NameGenerator {
         // simple version of the japanese syllabary (more complex combinations, such as those using -tsu have been left out)
         // as in, double consonants (pp), sounds with dakuon (e.g. ga), combos (e.g. kya) and long vowels (ii) are left out
         // source http://www2.latech.edu/~sajones/Foreign%20Languages/Japanese%20Syllables.htm
-        // TODO: possibly remove single and three letter syllables so you can guarantee a certain length
         String[] syllables = {"a", "i", "u", "e", "o",
                             "ka", "ki", "ku", "ke", "ko",
                             "ta", "chi", "tsu", "te", "to",
