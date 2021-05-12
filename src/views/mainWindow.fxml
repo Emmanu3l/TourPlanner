@@ -41,7 +41,6 @@
         <Button fx:id="genItem" onAction="#genItemAction" text="Generate Random Item" />
         <Button fx:id="genLog" onAction="#genLogAction" text="Generate Random Log" />
     </HBox>
-    <ListView fx:id="listTourItems" />
     <SplitPane dividerPositions="0.2">
         <VBox prefHeight="752.0" prefWidth="253.0">
             <HBox prefHeight="0.0" prefWidth="253.0">
@@ -51,9 +50,7 @@
                 <Button fx:id="modifyTour" onAction="#modifyTourAction" text="[]" />
             </HBox>
             <VBox>
-                <Label text="- Tour 1" />
-                <Label text="- Tour 2" />
-                <Label text="- Tour 3" />
+                <ListView fx:id="listTourItems" />
             </VBox>
         </VBox>
         <SplitPane>
