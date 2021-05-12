@@ -17,6 +17,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourLogs\" WHERE \"Id\"=CAST(? AS INTEGER);";
     private final String SQL_FIND_BY_TOURITEM = "SELECT * FROM public.\"TourLogs\" WHERE \"TourItemId\"=CAST(? AS INTEGER);";
     private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"LogText\", \"TourItemId\") VALUES (?, CAST(? AS INTEGER));";
+    private final String SQL_GET_ALL_LOGS = "SELECT * FROM public.\"TourLogs\";"; //added
 
     private IDatabase database;
     private ITourItemDAO tourItemDAO;
@@ -51,5 +52,11 @@ public class TourLogPostgresDAO implements ITourLogDAO {
         parameters.add(item.getId());
 
         return database.TourReader(SQL_FIND_BY_TOURITEM, parameters, TourLog.class);
+    }
+
+    //added
+    @Override
+    public List<TourLog> GetLogs() throws SQLException {
+        return database.TourReader(SQL_GET_ALL_LOGS, TourLog.class);
     }
 }

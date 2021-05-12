@@ -10,4 +10,6 @@ public interface ITourLogDAO {
     TourLog FindById(Integer logId) throws SQLException;
     TourLog AddNewItemLog(String logText, TourItem logItem) throws SQLException;
     List<TourLog> GetLogsForItem(TourItem item) throws SQLException;
+
+    List<TourLog> GetLogs() throws SQLException; //added
 }

@@ -3,7 +3,6 @@ package views;
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
 import businesslayer.NameGenerator;
-import dataaccesslayer.common.DALFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,8 +38,10 @@ public class MainWindowController implements Initializable {
 
     public TextField searchField;
     public ListView<TourItem> listTourItems;
+    public ListView<TourLog> listTourLogs; //added
 
     private ObservableList<TourItem> tourItems;
+    private ObservableList<TourLog> tourLogs; //added
     private TourItem currentItem;
     private JavaAppManager manager;
 
@@ -62,6 +63,11 @@ public class MainWindowController implements Initializable {
         tourItems = FXCollections.observableArrayList();
         tourItems.addAll(manager.GetItems());
         listTourItems.setItems(tourItems);
+
+        //added:
+        tourLogs = FXCollections.observableArrayList();
+        tourLogs.addAll(manager.GetLogs()); //TODO: how to get items?
+        listTourLogs.setItems(tourLogs); //Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.listLogItems" is null
     }
 
     private void FormatCells() {
@@ -78,6 +84,21 @@ public class MainWindowController implements Initializable {
                 }
             }
         }));
+
+        //added
+        listTourLogs.setCellFactory((param -> new ListCell<TourLog>() {
+            @Override
+            protected void updateItem(TourLog log, boolean empty) {
+                super.updateItem(log, empty);
+
+                if (empty || (log == null) || (log.getLogText() == null)) {
+                    setText(null);
+                } else {
+                    setText(log.getLogText());
+                }
+            }
+        }));
+
     }
 
     private void SetCurrentItem() {
@@ -111,6 +132,7 @@ public class MainWindowController implements Initializable {
 
     public void genLogAction(ActionEvent actionEvent) throws SQLException {
         TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
+        tourLogs.add(genLog); //added
     }
 
     public void addLogAction() {
@@ -124,7 +146,6 @@ public class MainWindowController implements Initializable {
     public void modifyLogAction() {
         System.out.println("pressed");
     }
-
 
     public void addTourAction() {
         System.out.println("pressed");

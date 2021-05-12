@@ -50,7 +50,7 @@
                 <Button fx:id="modifyTour" onAction="#modifyTourAction" text="[]" />
             </HBox>
             <VBox>
-                <ListView fx:id="listTourItems" />
+                <ListView fx:id="listTourItems" /> <!-- added -->
             </VBox>
         </VBox>
         <SplitPane>
@@ -77,13 +77,14 @@
                             <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
                             <Button fx:id="modifyLog" onAction="#modifyLogAction" text="[]" />
                     </HBox>
-                    <TableView prefHeight="475.0" prefWidth="1019.0">
+                    <ListView fx:id="listTourLogs" />
+                    <!--<TableView prefHeight="475.0" prefWidth="1019.0">
                         <columns>
                             <TableColumn text="Date" />
                             <TableColumn text="Duration" />
                             <TableColumn text="Distance" />
                         </columns>
-                    </TableView>
+                    </TableView>-->
                 </VBox>
             </VBox>
         </SplitPane>

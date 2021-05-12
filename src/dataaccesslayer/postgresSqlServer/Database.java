@@ -15,6 +15,7 @@ import java.util.List;
 public class Database implements IDatabase {
 
     private String connectionString; // verbindung zur datenbank aufbauen
+    //TODO: ADD CREATE, DROP, SELECT STATEMENTS TO DAO CLASSES AND MAKE THEM ACCESSIBLE AS A FUNCTION
 
     public Database(String connectionString) {
         this.connectionString = connectionString;

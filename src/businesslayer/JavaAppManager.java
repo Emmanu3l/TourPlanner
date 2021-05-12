@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface JavaAppManager {
     List<TourItem> GetItems() throws SQLException;
+    List<TourLog> GetLogs() throws SQLException; //added
     List<TourItem> Search(String itemName, boolean caseSensitive) throws SQLException;
     TourItem CreateTourItem(String name, String url, LocalDateTime creationDate) throws SQLException;
     TourLog CreateTourLog(String logText, TourItem item) throws SQLException;

@@ -22,6 +22,13 @@ public class JavaAppManagerImpl implements JavaAppManager {
         return tourItemDAO.GetItems();
     }
 
+    //added
+    @Override
+    public List<TourLog> GetLogs() throws SQLException {
+        ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
+        return tourLogDAO.GetLogs();
+    }
+
     @Override
     public List<TourItem> Search(String itemName, boolean caseSensitive) throws SQLException {
         List<TourItem> items = GetItems();

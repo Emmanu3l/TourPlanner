@@ -27,3 +27,5 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 10.05.2021: Probleme mit der DB (ca. 2 Stunden)
 
 11.05.2021: Lösen der Probleme mit der DB, Abschließen der Implementierung des Inhalts der ersten zwei Stunden des DAL Tutorials (ca. 2 Stunden)
+
+12.05.2021: Anpassungen des User Interfaces, Darstellung der Logs (ähnlich wie jene der Items) im User Interface (ca. 4 Stunden)
