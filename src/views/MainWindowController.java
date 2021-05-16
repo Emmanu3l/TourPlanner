@@ -28,9 +28,12 @@ public class MainWindowController implements Initializable {
     //TODO: HTTP for MapQuest
     //TODO: Logginglog4j
     //TODO: report-generation library of choice
+    //TODO: documentation annotations with doxygen
+    //TODO: iText PDF generation
 
     //TODO: [NameGenerator.java] possibly remove single and three letter syllables so you can guarantee a certain length
     //TODO: [Database.java] ADD CREATE, DROP, SELECT STATEMENTS TO DAO CLASSES AND MAKE THEM ACCESSIBLE AS A FUNCTION
+    //TODO: add dependencies to git repository?
 
     public Button search;
     public Button clear;
