@@ -41,7 +41,16 @@ public class MainWindowController implements Initializable {
 
     //TODO: Crud für TourItem und TourLog loggen, siehe Checkliste
 
-    //TODO:
+    //TODO: I misinterpreted the given UI. The section in the middle is for displaying the selected tour.
+    // Therefore I should have a pop-up window whenever I click the "+" button in the Tour or Log section.
+    // Furthermore, when I click the "-" button the currently selected Tour or Log should be deleted
+    // and when clicking "[]" a pop-up for editing the Tour or Log should open
+
+    //TODO: implement MapQuest API
+
+    //TODO: jar to exe mit jlink als unique feature
+
+    //TODO: add directory for images etc. to the config.properties
 
     public Button search;
     public Button clear;
