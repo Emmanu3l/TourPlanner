@@ -37,5 +37,5 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 Erfolglose Versuche launch4j zu Verwenden, [https://youtu.be/jPKxqc8Zg-0](mithilfe dieses Tutorials) (ca 4. Stunden)
 
 18.05.2021: 
-* Erweitern der TourItem und TourLog Klassen bzw. Anpassen der Projektstruktur, welche aus den Tutorials übernommen wurde, an die Problemstellung
+* Erweitern der TourItem und TourLog Klassen bzw. Anpassen der Projektstruktur, welche aus den Tutorials übernommen wurde, an die Problemstellung (ca. 2 Stunden)
 * Ermöglichen, dass über die GUI eigens spezifizierte Tours und Logs hinzugefügt werden können (im Gegensatz zu den zufällig generierten)

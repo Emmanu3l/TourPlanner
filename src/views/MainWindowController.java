@@ -6,15 +6,21 @@ import businesslayer.NameGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import models.TourItem;
 import models.TourLog;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -164,7 +170,17 @@ public class MainWindowController implements Initializable {
     }
 
     public void addLogAction() {
-        System.out.println("pressed");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addLogWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
+            stage.setTitle("Add Log");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeLogAction() {
@@ -176,7 +192,17 @@ public class MainWindowController implements Initializable {
     }
 
     public void addTourAction() {
-        System.out.println("pressed");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addTourWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
+            stage.setTitle("Add Tour");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeTourAction() {
