@@ -111,10 +111,10 @@ public class MainWindowController implements Initializable {
             protected void updateItem(TourLog log, boolean empty) {
                 super.updateItem(log, empty);
 
-                if (empty || (log == null) || (log.getLogText() == null)) {
+                if (empty || (log == null) || (log.getReport() == null)) {
                     setText(null);
                 } else {
-                    setText(log.getLogText());
+                    setText(log.getReport());
                 }
             }
         }));

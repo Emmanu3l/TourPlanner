@@ -122,8 +122,6 @@ public class Database implements IDatabase {
 
     private List<TourItem> QueryTourItemDataFromResultSet(ResultSet result) throws SQLException {
         List<TourItem> tourItemList = new ArrayList<TourItem>();
-        //damit man die local date time der tour items richtig verwenden kann:
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
         //immer wenn noch ein eintrag vorhanden ist:
         // zuerst id nehmen, dann namen etc.
@@ -131,8 +129,10 @@ public class Database implements IDatabase {
             tourItemList.add(new TourItem(
                     result.getInt("Id"),
                     result.getString("Name"),
-                    result.getString("Url"),
-                    LocalDateTime.parse(result.getString("CreationTime"), formatter)
+                    result.getString("Description"),
+                    result.getString("RouteInformation"),
+                    result.getString("ImagePath"),
+                    result.getDouble("Distance")
             ));
         }
 
@@ -141,13 +141,20 @@ public class Database implements IDatabase {
 
     private List<TourLog> QueryTourLogDataFromResultSet(ResultSet result) throws SQLException {
         List<TourLog> tourLogList = new ArrayList<TourLog>();
+        //damit man die local date time der tour items richtig verwenden kann:
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
         ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
 
         while(result.next()) {
             tourLogList.add(new TourLog(
                     result.getInt("Id"),
-                    result.getString("LogText"),
-                    tourItemDAO.FindById(result.getInt("TourItemId"))
+                    tourItemDAO.FindById(result.getInt("TourItemId")),
+                    LocalDateTime.parse(result.getString("CreationTime"), formatter),
+                    result.getString("Report"),
+                    result.getDouble("Distance"),
+                    result.getString("TotalTime"),
+                    result.getInt("Rating")
             ));
         }
 
