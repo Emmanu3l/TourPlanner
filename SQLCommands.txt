@@ -4,4 +4,5 @@ CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "TourItemId" integer, "Creatio
 SELECT * FROM public."TourItems";
 SELECT * FROM public."TourLogs";
 
-TODO: DROP ALL
+DROP TABLE "TourItems";
+DROP TABLE "TourLogs";

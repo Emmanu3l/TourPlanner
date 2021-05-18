@@ -53,7 +53,6 @@ public class MainWindowController implements Initializable {
     public Button addLog;
     public Button removeLog;
     public Button modifyLog;
-
     public Button genLog;
 
     public TextField searchField;
