@@ -1,5 +1,7 @@
-CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Url" text, "CreationTime" text);
-CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "LogText" text, "TourItemId" integer);
+CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Description" text, "RouteInformation" text, "ImagePath" text, "Distance" double precision);
+CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "TourItemId" integer, "CreationTime" text, "Report" text, "Distance" double precision, "TotalTime" text, "Rating" integer);
 
 SELECT * FROM public."TourItems";
 SELECT * FROM public."TourLogs";
+
+TODO: DROP ALL
