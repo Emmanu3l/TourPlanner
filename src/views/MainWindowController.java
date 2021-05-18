@@ -33,6 +33,15 @@ public class MainWindowController implements Initializable {
     //TODO: [NameGenerator.java] possibly remove single and three letter syllables so you can guarantee a certain length
     //TODO: [Database.java] ADD CREATE, DROP, SELECT STATEMENTS TO DAO CLASSES AND MAKE THEM ACCESSIBLE AS A FUNCTION
     //TODO: add dependencies to git repository?
+    //TODO: https://youtu.be/jPKxqc8Zg-0
+
+    //TODO: für morgen:
+    // configuration: da scheint config.properties zu reichen
+    // deployment: siehe launch4j
+
+    //TODO: Crud für TourItem und TourLog loggen, siehe Checkliste
+
+    //TODO:
 
     public Button search;
     public Button clear;

@@ -29,3 +29,11 @@ implementieren eines simplen Layouts und Buttons (ca. 4 Stunden)
 11.05.2021: Lösen der Probleme mit der DB, Abschließen der Implementierung des Inhalts der ersten zwei Stunden des DAL Tutorials (ca. 2 Stunden)
 
 12.05.2021: Anpassungen des User Interfaces, Darstellung der Logs (ähnlich wie jene der Items) im User Interface (ca. 4 Stunden)
+
+16.05.2021: Recherche und Arbeit an Deployment. Erfolgreiche Umsetzung von "Package an application into a JAR" und "Run a packaged JAR"
+[https://www.jetbrains.com/help/idea/compiling-applications.html](laut dieser Anleitung) (ca 3. Stunden)
+
+17.05.2021 (in der Früh): Buchstäbliche nahtlose Fortsetzung der Arbeit des vorigen Tages. 
+Erfolglose Versuche launch4j zu Verwenden, [https://youtu.be/jPKxqc8Zg-0](mithilfe dieses Tutorials) (ca 4. Stunden)
+
+18.05.2021: Erweitern der TourItem und TourLog Klassen.

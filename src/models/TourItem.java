@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 
 public class TourItem {
 
+    //every tour consists of name, tour description, route information (an image with the
+    //tour map) and tour distance
+
     @Getter @Setter public Integer Id;
     @Getter @Setter public String Name;
     @Getter @Setter public String Url;
