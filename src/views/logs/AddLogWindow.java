@@ -1,4 +1,4 @@
-package views;
+package views.logs;
 
 public class AddLogWindow {
 }

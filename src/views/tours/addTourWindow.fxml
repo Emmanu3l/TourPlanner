@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="views.tours.AddTourWindow"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox>
+        <HBox>
+            <Label text="Title: " GridPane.columnIndex="1" />
+            <TextField promptText="Name the tour" GridPane.columnIndex="1" />
+
+        </HBox>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Route">
+                <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />
+            </Tab>
+            <Tab text="Description">
+                <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
+            </Tab>
+        </TabPane>
+    </VBox>
+
+</AnchorPane>

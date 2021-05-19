@@ -38,4 +38,10 @@ Erfolglose Versuche launch4j zu Verwenden, [https://youtu.be/jPKxqc8Zg-0](mithil
 
 18.05.2021: 
 * Erweitern der TourItem und TourLog Klassen bzw. Anpassen der Projektstruktur, welche aus den Tutorials übernommen wurde, an die Problemstellung (ca. 2 Stunden)
-* Ermöglichen, dass über die GUI eigens spezifizierte Tours und Logs hinzugefügt werden können (im Gegensatz zu den zufällig generierten)
+* Ermöglichen, dass über die GUI pop-up fenster zum hinzufügen/bearbeiten von Tours/Logs geöffnet werden können (ca. 2 Stunden)
+
+19.05.2021: Hinzufügen von edit window pop-ups 
+
+TODO
+eigens spezifizierte Tours und Logs hinzugefügen können (im Gegensatz zu den zufällig generierten)
+SQL an neue DB Struktur anpassen sodass randomly generated buttons wieder funktionieren

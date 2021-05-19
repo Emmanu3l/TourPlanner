@@ -55,7 +55,7 @@
         </VBox>
         <SplitPane>
             <VBox>
-                <VBox>
+                <VBox fx:id="previewSelectedTour">
                     <HBox>
                         <Label text="Title: " GridPane.columnIndex="1" />
                         <TextField promptText="Name the tour" GridPane.columnIndex="1" />

@@ -1,4 +1,4 @@
-package views;
+package views.tours;
 
 public class AddTourWindow {
 }

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -73,6 +74,7 @@ public class MainWindowController implements Initializable {
     public TextField searchField;
     public ListView<TourItem> listTourItems;
     public ListView<TourLog> listTourLogs; //added
+    public VBox previewSelectedTour;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -91,6 +93,7 @@ public class MainWindowController implements Initializable {
 
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+        previewSelectedTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
     }
 
     private void SetupListView() throws SQLException {
@@ -171,7 +174,7 @@ public class MainWindowController implements Initializable {
 
     public void addLogAction() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addLogWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logs/addLogWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
@@ -188,12 +191,22 @@ public class MainWindowController implements Initializable {
     }
 
     public void modifyLogAction() {
-        System.out.println("pressed");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logs/editLogWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
+            stage.setTitle("Edit Log");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addTourAction() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addTourWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/addTourWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
@@ -210,6 +223,16 @@ public class MainWindowController implements Initializable {
     }
 
     public void modifyTourAction() {
-        System.out.println("pressed");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/editTourWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
+            stage.setTitle("Edit Tour");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
