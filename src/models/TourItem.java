@@ -22,4 +22,13 @@ public class TourItem {
         ImagePath = imagePath;
         Distance = distance;
     }
+
+    public String getOrigin() {
+     return "";
+    }
+
+    public String getDestination() {
+        return "";
+    }
+
 }
