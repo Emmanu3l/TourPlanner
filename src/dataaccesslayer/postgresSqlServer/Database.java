@@ -1,11 +1,13 @@
 package dataaccesslayer.postgresSqlServer;
 
+import businesslayer.ConfigurationManager;
 import dataaccesslayer.common.DALFactory;
 import dataaccesslayer.common.IDatabase;
 import dataaccesslayer.dao.ITourItemDAO;
 import models.TourItem;
 import models.TourLog;
 
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,8 +27,8 @@ public class Database implements IDatabase {
         try {
             // DriverManager ermöglicht mit dem connection string & zugangsdaten auf eine sql db zuzugreifen
             // generell sollte man diese zugangsdaten nicht im code sondern in einem config file haben
-            return DriverManager.getConnection(connectionString, "postgres", "password");
-        } catch (SQLException e) {
+            return DriverManager.getConnection(connectionString, ConfigurationManager.GetConfigProperty("DatabaseUser"), ConfigurationManager.GetConfigProperty("DatabasePassword"));
+        } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace(); // besser als System.out.println()
         }
         throw new SQLException("Establishing database connection failed.");
@@ -129,9 +131,9 @@ public class Database implements IDatabase {
             tourItemList.add(new TourItem(
                     result.getInt("Id"),
                     result.getString("Name"),
+                    result.getString("Origin"),
+                    result.getString("Destination"),
                     result.getString("Description"),
-                    result.getString("RouteInformation"),
-                    result.getString("ImagePath"),
                     result.getDouble("Distance")
             ));
         }

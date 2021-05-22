@@ -40,8 +40,20 @@ Erfolglose Versuche launch4j zu Verwenden, [https://youtu.be/jPKxqc8Zg-0](mithil
 * Erweitern der TourItem und TourLog Klassen bzw. Anpassen der Projektstruktur, welche aus den Tutorials übernommen wurde, an die Problemstellung (ca. 2 Stunden)
 * Ermöglichen, dass über die GUI pop-up fenster zum hinzufügen/bearbeiten von Tours/Logs geöffnet werden können (ca. 2 Stunden)
 
-19.05.2021: Hinzufügen von edit window pop-ups 
+19.05.2021: Hinzufügen von edit window pop-ups und hinzufügen von zusätzlicher Funktionalität bei TourItem.java (ca. 3 Stunden)
+
+20.05.2021: 
+* Erweitern von MapQuest.java (ca. 2 Stunden)
+* Erweitern von AddTourWindow (ca. 2 Stunden)
+
+21.05.2021: Recherche bzgl. MVVM und erstellung des "viewmodels"-package (ca. 3 Stunden)
+
+22.05.2021: Entscheidung erst mal alles im Controller zu implementieren und es später aufzuteilen, sobald die Basisfunktionalität vorhanden ist.
+Fokus darauf eine funktionale Implementierung von addTour zu haben, da die meiste fehlende funktionalität in meinem program eine variation davon ist.
+
+todo: implementierung von viewmodels
 
 TODO
 eigens spezifizierte Tours und Logs hinzugefügen können (im Gegensatz zu den zufällig generierten)
 SQL an neue DB Struktur anpassen sodass randomly generated buttons wieder funktionieren
+.jar to .exe mittels jlink und launch4j

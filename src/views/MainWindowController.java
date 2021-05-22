@@ -59,6 +59,8 @@ public class MainWindowController implements Initializable {
 
     //TODO: add directory for images etc. to the config.properties
 
+    //TODO: the tour preview that gets shown when you select it should get the appropriate image from the path. how to identify it?
+
     public Button search;
     public Button clear;
 

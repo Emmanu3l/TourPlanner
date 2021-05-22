@@ -8,23 +8,18 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.tours.AddTourWindow"
+            fx:controller="views.tours.AddTourWindowController"
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox>
-        <HBox>
-            <Label text="Title: " GridPane.columnIndex="1" />
-            <TextField promptText="Name the tour" GridPane.columnIndex="1" />
+        <Label text="Title: " GridPane.columnIndex="1" />
+        <TextField fx:id="name" promptText="Name the tour" GridPane.columnIndex="1" />
+        <TextField fx:id="origin" prefHeight="79.0" prefWidth="971.0" promptText="Write the origin here" />
+        <TextField fx:id="destination" prefHeight="79.0" prefWidth="971.0" promptText="Write the destination here" />
+        <TextField fx:id="description" prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
+        <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
+        <Button fx:id="submitTour">Add this tour</Button>
 
-        </HBox>
-        <TabPane tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Route">
-                <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />
-            </Tab>
-            <Tab text="Description">
-                <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
-            </Tab>
-        </TabPane>
     </VBox>
 
 </AnchorPane>
