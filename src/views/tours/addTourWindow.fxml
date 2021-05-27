@@ -18,7 +18,7 @@
         <TextField fx:id="destination" prefHeight="79.0" prefWidth="971.0" promptText="Write the destination here" />
         <TextField fx:id="description" prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
         <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
-        <Button fx:id="submitTour">Add this tour</Button>
+        <Button fx:id="submitTour" onAction="#addTour">Add this tour</Button>
 
     </VBox>
 

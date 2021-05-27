@@ -18,12 +18,12 @@ public class TourItem {
     @Getter @Setter private double Distance;
 
     //TODO: i assume i should set the distance via api request, but i'll keep it like that for now
-    public TourItem(Integer id, String name, String description, String origin, String destination, double distance) {
+    public TourItem(Integer id, String name, String origin, String destination, String description, double distance) {
         Id = id;
         Name = name;
-        Description = description;
         Origin = origin;
         Destination = destination;
+        Description = description;
         Distance = distance;
     }
 

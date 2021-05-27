@@ -17,9 +17,10 @@ public class TourItemPostgresDAO implements ITourItemDAO {
 
     // was man bei einem data access object immer machen muss: sql statements festlegen
     // strichpunkt in sql statement nicht vergessen!
+    //TODO: nicht vergessen das zu verändern wenn du die parameter der models anpasst
     private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
     private final String SQL_GET_ALL_ITEMS = "SELECT * FROM public.\"TourItems\";";
-    private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Url\",\"CreationTime\") VALUES (?, ?, ?);";
+    private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Origin\",\"Destination\",\"Description\",\"Distance\") VALUES (?, ?, ?, ?, ?);";
 
     private IDatabase database;
 
@@ -38,12 +39,13 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     }
 
     @Override
-    public TourItem AddNewItem(String name, String url, LocalDateTime creationTime) throws SQLException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    public TourItem AddNewItem(String name, String origin, String destination, String description, double distance) throws SQLException {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(name);
-        parameters.add(url);
-        parameters.add(creationTime.format(formatter));
+        parameters.add(origin);
+        parameters.add(destination);
+        parameters.add(description);
+        parameters.add(distance);
 
         int resultId = database.InsertNew(SQL_INSERT_NEW_ITEM, parameters);
         return FindById(resultId);

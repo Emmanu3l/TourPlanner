@@ -46,9 +46,9 @@ public class JavaAppManagerImpl implements JavaAppManager {
     }
 
     @Override
-    public TourItem CreateTourItem(String name, String url, LocalDateTime creationDate) throws SQLException {
+    public TourItem CreateTourItem(String name, String origin, String destination, String description, double distance) throws SQLException {
         ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
-        return tourItemDAO.AddNewItem(name, url, creationDate);
+        return tourItemDAO.AddNewItem(name, origin, destination, description, distance);
     }
 
     @Override

@@ -2,8 +2,8 @@ package views.tours;
 
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
-import businesslayer.NameGenerator;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,7 +11,6 @@ import models.TourItem;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class AddTourWindowController implements Initializable {
@@ -32,9 +31,19 @@ public class AddTourWindowController implements Initializable {
         manager = JavaAppManagerFactory.GetManager();
     }
 
-    public void addTour() throws SQLException {
-        TourItem genItem = manager.CreateTourItem(name.toString(), NameGenerator.GenerateName(8), LocalDateTime.now());
+    public void addTour(ActionEvent actionEvent) throws SQLException {
+        TourItem genItem = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
         tourItems.add(genItem);
+        //TourItem genItem = manager.CreateTourItem("test", "test", "test", "test", (int)(1));
+        //TourItem genItem = new TourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
+        /*System.out.println(name.getText());
+        System.out.println(origin.getText());
+        System.out.println(destination.getText());
+        System.out.println(description.getText());
+        System.out.println(Double.parseDouble(distance.getText()));*/
+
     }
+
+    //separate function for additional attributes
 
 }

@@ -1,4 +1,4 @@
-CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Description" text, "RouteInformation" text, "ImagePath" text, "Distance" double precision);
+CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Origin" text, "Destination" text, "Description" text, "Distance" double precision);
 CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "TourItemId" integer, "CreationTime" text, "Report" text, "Distance" double precision, "TotalTime" text, "Rating" integer);
 
 SELECT * FROM public."TourItems";

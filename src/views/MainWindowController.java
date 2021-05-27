@@ -18,8 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import models.TourItem;
 import models.TourLog;
+import viewmodels.MainWindowViewModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -61,6 +64,9 @@ public class MainWindowController implements Initializable {
 
     //TODO: the tour preview that gets shown when you select it should get the appropriate image from the path. how to identify it?
 
+    // optionally - from maven: org.apache.logging.log4j:log4j-1.2-api:2.14.1
+    //TODO: falls du log4j from maven nutzt, lösch log4j aus dem lib folder
+
     public Button search;
     public Button clear;
 
@@ -83,9 +89,16 @@ public class MainWindowController implements Initializable {
     private TourItem currentItem;
     private JavaAppManager manager;
 
+    public MainWindowViewModel viewModel = new MainWindowViewModel();
+
+    static Logger log = LogManager.getLogger(MainWindowController.class.getName());
+
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        log.info("MainWindow has been initialized.");
+        log.debug("Test");
 
         manager = JavaAppManagerFactory.GetManager();
 
@@ -149,29 +162,26 @@ public class MainWindowController implements Initializable {
     }
 
     public void searchAction() throws SQLException {
-        tourItems.clear();
-
-        List<TourItem> items = manager.Search(searchField.textProperty().getValue(), false);
-        tourItems.addAll(items);
-        //search.setText("Results found");
+        log.info("Searched for item.");
+        log.debug("Test");
+        viewModel.search(tourItems, manager, searchField);
     }
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
-        tourItems.clear();
-        searchField.textProperty().setValue("");
-
-        List<TourItem> items = manager.GetItems();
-        tourItems.addAll(items);
+        log.info("Cleared search bar.");
+        log.debug("Test");
+        viewModel.clear(tourItems, manager, searchField);
     }
 
     public void genItemAction(ActionEvent actionEvent) throws SQLException {
-        TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), LocalDateTime.now());
+        //TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), LocalDateTime.now());
+        TourItem genItem = manager.CreateTourItem("test", "test", "test", "test", 1.0);
         tourItems.add(genItem);
     }
 
     public void genLogAction(ActionEvent actionEvent) throws SQLException {
-        TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
-        tourLogs.add(genLog); //added
+        //TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
+        //tourLogs.add(genLog); added
     }
 
     public void addLogAction() {

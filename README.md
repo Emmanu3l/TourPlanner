@@ -50,6 +50,11 @@ Erfolglose Versuche launch4j zu Verwenden, [https://youtu.be/jPKxqc8Zg-0](mithil
 
 22.05.2021: Entscheidung erst mal alles im Controller zu implementieren und es später aufzuteilen, sobald die Basisfunktionalität vorhanden ist.
 Fokus darauf eine funktionale Implementierung von addTour zu haben, da die meiste fehlende funktionalität in meinem program eine variation davon ist.
+Kleinere Veränderungen an AddTourWindowController.java (3 Stunden)
+
+24.05.2021: Vergebliche Versuche das Einfügen in die Datenbank zum funktionieren zu bringen (ca. 3 Stunden)
+
+27.05.2021: Erweiterung der AddTourWindowController Klasse
 
 todo: implementierung von viewmodels
 
@@ -57,3 +62,6 @@ TODO
 eigens spezifizierte Tours und Logs hinzugefügen können (im Gegensatz zu den zufällig generierten)
 SQL an neue DB Struktur anpassen sodass randomly generated buttons wieder funktionieren
 .jar to .exe mittels jlink und launch4j
+
+weiters zu tun:
+sobald man die logs und tours vernünftig hinzufügen kann, sollten sie auch detailreicher angezeigt werden (nicht nur eine spalte/eigenschaft)

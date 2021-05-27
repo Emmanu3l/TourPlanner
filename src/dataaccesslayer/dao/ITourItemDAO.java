@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ITourItemDAO {
     TourItem FindById(Integer itemId) throws SQLException;
-    TourItem AddNewItem(String name, String url, LocalDateTime creationTime) throws SQLException;
+    TourItem AddNewItem(String name, String origin, String destination, String description, double distance) throws SQLException;
     List<TourItem> GetItems() throws SQLException; // gibt all tour items zurück, daher keine parameter vonnöten
 }

@@ -27,6 +27,7 @@ public class MapQuest {
 
     //directions api: https://developer.mapquest.com/documentation/directions-api/
     public void getDirections() {
+        String resourceURL = "http://www.mapquestapi.com/directions/v2/route";
 
     }
 }
