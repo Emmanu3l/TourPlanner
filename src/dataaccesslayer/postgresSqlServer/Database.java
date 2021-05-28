@@ -68,7 +68,7 @@ public class Database implements IDatabase {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException e) { //das catch and throw statement versteckt womöglich eigentliche hilfreiche fehlermeldungen
             e.printStackTrace();
         }
         throw new SQLException("Creating data failed, no ID obtained. " + sqlQuery);

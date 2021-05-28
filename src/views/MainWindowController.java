@@ -2,7 +2,6 @@ package views;
 
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
-import businesslayer.NameGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,8 +26,6 @@ import viewmodels.MainWindowViewModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -91,14 +88,13 @@ public class MainWindowController implements Initializable {
 
     public MainWindowViewModel viewModel = new MainWindowViewModel();
 
-    static Logger log = LogManager.getLogger(MainWindowController.class.getName());
+    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
 
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        log.info("MainWindow has been initialized.");
-        log.debug("Test");
+        logger.info("MainWindow has been initialized.");
 
         manager = JavaAppManagerFactory.GetManager();
 
@@ -162,14 +158,12 @@ public class MainWindowController implements Initializable {
     }
 
     public void searchAction() throws SQLException {
-        log.info("Searched for item.");
-        log.debug("Test");
+        logger.info("Searched for item.");
         viewModel.search(tourItems, manager, searchField);
     }
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
-        log.info("Cleared search bar.");
-        log.debug("Test");
+        logger.info("Cleared search bar.");
         viewModel.clear(tourItems, manager, searchField);
     }
 

@@ -31,8 +31,14 @@ public class AddTourWindowController implements Initializable {
         manager = JavaAppManagerFactory.GetManager();
     }
 
+    //TODO: get distance from API
+
     public void addTour(ActionEvent actionEvent) throws SQLException {
-        TourItem genItem = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
+        double distanceValue = 0;
+        if (!distance.getText().isEmpty()) {
+            distanceValue = Double.parseDouble(distance.getText());
+        }
+        TourItem genItem = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), distanceValue);
         tourItems.add(genItem);
         //TourItem genItem = manager.CreateTourItem("test", "test", "test", "test", (int)(1));
         //TourItem genItem = new TourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
