@@ -19,7 +19,14 @@
         <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
         <TextField fx:id="totalTime" prefHeight="79.0" prefWidth="971.0" promptText="Write the total time here" />
         <TextField fx:id="rating" prefHeight="79.0" prefWidth="971.0" promptText="Write the rating here" />
-        <Button fx:id="submitTour" onAction="#addLog">Add this tour</Button>
+
+        <TextField fx:id="vehicleType" prefHeight="79.0" prefWidth="971.0" promptText="Write the vehicle type here" />
+        <TextField fx:id="averageSpeed" prefHeight="79.0" prefWidth="971.0" promptText="Write the average speed here" />
+        <TextField fx:id="horsepower" prefHeight="79.0" prefWidth="971.0" promptText="Write the horsepower here" />
+        <TextField fx:id="joule" prefHeight="79.0" prefWidth="971.0" promptText="Write the joule value here" />
+        <TextField fx:id="description" prefHeight="79.0" prefWidth="971.0" promptText="Write the description here" />
+
+        <Button fx:id="submitLog" onAction="#addLog">Add this tour</Button>
 
     </VBox>
 

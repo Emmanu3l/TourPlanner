@@ -24,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 import models.TourItem;
 import models.TourLog;
 import viewmodels.MainWindowViewModel;
+import views.logs.AddLogWindowController;
 import views.logs.EditLogWindowController;
 import views.tours.AddTourWindowController;
 
@@ -197,17 +198,12 @@ public class MainWindowController implements Initializable {
 
     public void addLogAction() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logs/addLogWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
-            stage.setTitle("Add Log");
-            stage.setScene(new Scene(root1));
-            stage.show();
+            AddLogWindowController addLogWindowController = loadFXML("logs/addLogWindow.fxml", "Add Log").getController();
+            addLogWindowController.initData(manager, tourLogs, currentItem);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Log has been added");
+        logger.info("Log window has been opened");
     }
 
     public void removeLogAction() {
@@ -236,27 +232,12 @@ public class MainWindowController implements Initializable {
 
     public void addTourAction(ActionEvent actionEvent) {
         try {
-            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/addTourWindow.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
-            stage.setTitle("Add Tour");
-            stage.setScene(new Scene(root1));
-            stage.show();*/
-
-            //added code (maybe this whole part should be it's own function?)
-            //AddTourWindowController addTourWindowController = fxmlLoader.getController();
             AddTourWindowController addTourWindowController = loadFXML("tours/addTourWindow.fxml", "Add Tour").getController();
-            //TourItem addedItem = addTourWindowController.addTour(actionEvent);
             addTourWindowController.initData(manager, tourItems);
-            //tourItems.add(addTourWindowController.addTour(actionEvent));
-            //tourItems.add(addedItem); //add to view
-            //catch exception with catch or method signature?
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Tour has been added");
+        logger.info("Tour window has been opened");
     }
 
     public void removeTourAction() throws SQLException {

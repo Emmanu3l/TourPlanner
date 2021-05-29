@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import lombok.SneakyThrows;
 import models.TourItem;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import views.MainWindowController;
 
 import java.net.URL;
@@ -29,6 +31,7 @@ public class AddTourWindowController implements Initializable {
 
     private ObservableList<TourItem> tourItems;
 
+    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,12 +48,13 @@ public class AddTourWindowController implements Initializable {
     //TODO: get distance from API
 
     public void addTour(ActionEvent actionEvent) throws SQLException {
-        double distanceValue = 0;
+        double distanceValue = 0; //TODO: introduce more default value? Perhaps in AddLog too?
         if (!distance.getText().isEmpty()) {
             distanceValue = Double.parseDouble(distance.getText());
         }
         TourItem addedItem = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), distanceValue);
         tourItems.add(addedItem);
+        logger.info("Tour has been added");
         //TODO I should return the parameters and Create the item with the manager in the mwc, right?
 
         //tourItems.add(genItem); //TODO: get touritems from mwc? otherwise its obviously null because it hasn't been initialized
