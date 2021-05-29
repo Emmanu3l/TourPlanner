@@ -21,6 +21,7 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
     private final String SQL_GET_ALL_ITEMS = "SELECT * FROM public.\"TourItems\";";
     private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Origin\",\"Destination\",\"Description\",\"Distance\") VALUES (?, ?, ?, ?, ?);";
+    private final String SQL_REMOVE_ITEM = "DELETE FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
 
@@ -54,5 +55,10 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     @Override
     public List<TourItem> GetItems() throws SQLException {
         return database.TourReader(SQL_GET_ALL_ITEMS, TourItem.class);
+    }
+
+    @Override
+    public void RemoveItem(int itemId) throws SQLException {
+        database.Remove(SQL_REMOVE_ITEM, itemId);
     }
 }

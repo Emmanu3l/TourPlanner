@@ -18,14 +18,14 @@ public class TourLog {
     @Getter @Setter private int Rating;
 
     //additional attributes
-    @Getter @Setter private String vehicleType; //fahrrad, auto, motorrad etc
-    @Getter @Setter private String averageSpeed;
-    @Getter @Setter private int horsepower; //negativ falls kein auto/motorrad
-    @Getter @Setter private int joule; //negativ falls kein fahrrad
-    @Getter @Setter private String description; //zitate/aussagen bzgl. des trips
+    @Getter @Setter private String VehicleType; //fahrrad, auto, motorrad etc
+    @Getter @Setter private String AverageSpeed;
+    @Getter @Setter private int Horsepower; //negativ falls kein auto/motorrad
+    @Getter @Setter private int Joule; //negativ falls kein fahrrad
+    @Getter @Setter private String Description; //zitate/aussagen bzgl. des trips
 
 
-    public TourLog(Integer id, TourItem logTourItem, LocalDateTime creationTime, String report, double distance, String totalTime, int rating) {
+    /*public TourLog(Integer id, TourItem logTourItem, LocalDateTime creationTime, String report, double distance, String totalTime, int rating) {
         Id = id;
         LogTourItem = logTourItem;
         CreationTime = creationTime;
@@ -33,7 +33,7 @@ public class TourLog {
         Distance = distance;
         TotalTime = totalTime;
         Rating = rating;
-    }
+    }*/
 
     public TourLog(Integer id, TourItem logTourItem, LocalDateTime creationTime, String report, double distance, String totalTime, int rating, String vehicleType, String averageSpeed, int horsepower, int joule, String description) {
         Id = id;
@@ -43,10 +43,10 @@ public class TourLog {
         Distance = distance;
         TotalTime = totalTime;
         Rating = rating;
-        this.vehicleType = vehicleType;
-        this.averageSpeed = averageSpeed;
-        this.horsepower = horsepower;
-        this.joule = joule;
-        this.description = description;
+        VehicleType = vehicleType;
+        AverageSpeed = averageSpeed;
+        Horsepower = horsepower;
+        Joule = joule;
+        Description = description;
     }
 }

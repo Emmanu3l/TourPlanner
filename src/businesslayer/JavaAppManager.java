@@ -12,5 +12,6 @@ public interface JavaAppManager {
     List<TourLog> GetLogs() throws SQLException; //added
     List<TourItem> Search(String itemName, boolean caseSensitive) throws SQLException;
     TourItem CreateTourItem(String name, String origin, String destination, String description, double distance) throws SQLException;
-    TourLog CreateTourLog(String logText, TourItem item) throws SQLException;
+    TourLog CreateTourLog(TourItem item, LocalDateTime creationTime, String report, double distance, String totalTime, int rating, String vehicleType, String averageSpeed, int horsepower, int joule, String description) throws SQLException;
+    void RemoveTourItem(Integer itemId) throws SQLException;
 }

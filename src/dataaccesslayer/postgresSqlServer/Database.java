@@ -122,6 +122,18 @@ public class Database implements IDatabase {
         throw new SQLException("Creating data failed, no ID obtained. " + sqlQuery);
     }
 
+    @Override
+    public void Remove(String SQL_REMOVE_ITEM, int itemId) throws SQLException {
+        try (Connection connection = CreateConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_REMOVE_ITEM)) {
+            preparedStatement.setInt(1, itemId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private List<TourItem> QueryTourItemDataFromResultSet(ResultSet result) throws SQLException {
         List<TourItem> tourItemList = new ArrayList<TourItem>();
 
@@ -156,7 +168,12 @@ public class Database implements IDatabase {
                     result.getString("Report"),
                     result.getDouble("Distance"),
                     result.getString("TotalTime"),
-                    result.getInt("Rating")
+                    result.getInt("Rating"),
+                    result.getString("VehicleType"),
+                    result.getString("AverageSpeed"),
+                    result.getInt("Horsepower"),
+                    result.getInt("Joule"),
+                    result.getString("Description")
             ));
         }
 

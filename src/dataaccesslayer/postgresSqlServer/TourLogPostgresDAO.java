@@ -9,6 +9,7 @@ import models.TourLog;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     //TODO: nicht vergessen das zu verändern wenn du die parameter der models anpasst
     private final String SQL_FIND_BY_ID = "SELECT * FROM public.\"TourLogs\" WHERE \"Id\"=CAST(? AS INTEGER);";
     private final String SQL_FIND_BY_TOURITEM = "SELECT * FROM public.\"TourLogs\" WHERE \"TourItemId\"=CAST(? AS INTEGER);";
-    private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"LogText\", \"TourItemId\") VALUES (?, CAST(? AS INTEGER));";
+    private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"TourItemId\", \"CreationTime\", \"Report\", \"Distance\", \"TotalTime\", \"Rating\", \"VehicleType\", \"AverageSpeed\", \"Horsepower\", \"Joule\", \"Description\") VALUES (CAST(? AS INTEGER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private final String SQL_GET_ALL_LOGS = "SELECT * FROM public.\"TourLogs\";"; //added
 
     private IDatabase database;
@@ -39,12 +40,21 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     }
 
     @Override
-    public TourLog AddNewItemLog(String logText, TourItem logItem) throws SQLException {
+    public TourLog AddNewItemLog(TourItem logItem, LocalDateTime creationTime, String report, double distance, String totalTime, int rating, String vehicleType, String averageSpeed, int horsepower, int joule, String description) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         ArrayList<Object> parameters = new ArrayList<>();
-        parameters.add(logText);
         parameters.add(logItem.getId());
-        //parameters.add(creationTime.format(formatter));
+        parameters.add(creationTime.format(formatter));
+        parameters.add(report);
+        parameters.add(distance);
+        parameters.add(totalTime);
+        parameters.add(rating);
+        parameters.add(vehicleType);
+        parameters.add(averageSpeed);
+        parameters.add(horsepower);
+        parameters.add(joule);
+        parameters.add(description);
+
         //TODO: sobald ich addnewitemlog auf die neuen parameter angepasst habe wird eine variable creationTime dabei sein
         // das wird sich bemerkbar machen wenn ich die create log related funktionen im appmanager, appmanagerimpl, itourlogdao und tourlogpostgresdao anpassen will
 

@@ -8,4 +8,6 @@ public interface IDatabase {
     int InsertNew(String sqlQuery, ArrayList<Object> parameters) throws SQLException; // nach dem einfügen objekt id erhalten
     <T> List<T> TourReader(String sqlQuery, Class<T> tourType) throws SQLException; // liest aus datenbank tour items aus (mit method generics für datentyp T)
     <T> List<T> TourReader(String sqlQuery, ArrayList<Object> parameters, Class<T> tourType) throws SQLException;
+
+    void Remove(String SQL_REMOVE_ITEM, int itemId) throws SQLException;
 }

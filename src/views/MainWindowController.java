@@ -2,6 +2,8 @@ package views;
 
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
+import businesslayer.MapQuest;
+import businesslayer.NameGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,10 +24,13 @@ import org.apache.logging.log4j.Logger;
 import models.TourItem;
 import models.TourLog;
 import viewmodels.MainWindowViewModel;
+import views.logs.EditLogWindowController;
+import views.tours.AddTourWindowController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -79,7 +84,7 @@ public class MainWindowController implements Initializable {
     public TextField searchField;
     public ListView<TourItem> listTourItems;
     public ListView<TourLog> listTourLogs; //added
-    public VBox previewSelectedTour;
+    public VBox previewSelectedTour; //TODO: use this instead of having a separate window for editing tours, hier vielleicht auch ein image preview verwenden, auch ein log preview rechts von der liste hinzufügen
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -105,6 +110,11 @@ public class MainWindowController implements Initializable {
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         previewSelectedTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
+        removeTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+        modifyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+
+        modifyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
+        removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
     }
 
     private void SetupListView() throws SQLException {
@@ -117,6 +127,10 @@ public class MainWindowController implements Initializable {
         tourLogs.addAll(manager.GetLogs()); //TODO: how to get items?
         listTourLogs.setItems(tourLogs); //Cannot invoke "javafx.scene.control.ListView.setItems(javafx.collections.ObservableList)" because "this.listLogItems" is null
     }
+
+    /*public void generateImage(TourItem tourItem) throws IOException {
+        MapQuest.createStaticMapImage(tourItem);
+    }*/
 
     private void FormatCells() {
         // format cells to show name
@@ -158,24 +172,27 @@ public class MainWindowController implements Initializable {
     }
 
     public void searchAction() throws SQLException {
-        logger.info("Searched for item.");
         viewModel.search(tourItems, manager, searchField);
+        logger.info("Searched for item.");
     }
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
-        logger.info("Cleared search bar.");
         viewModel.clear(tourItems, manager, searchField);
+        logger.info("Cleared search bar.");
     }
 
-    public void genItemAction(ActionEvent actionEvent) throws SQLException {
+    public void genItemAction(ActionEvent actionEvent) throws SQLException, IOException {
         //TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), LocalDateTime.now());
-        TourItem genItem = manager.CreateTourItem("test", "test", "test", "test", 1.0);
+        TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), 42.0);
         tourItems.add(genItem);
+        //generateImage(genItem);
+        logger.info("Item has been randomly generated");
     }
 
     public void genLogAction(ActionEvent actionEvent) throws SQLException {
         //TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
-        //tourLogs.add(genLog); added
+        TourLog genLog = manager.CreateTourLog(currentItem, LocalDateTime.now(), NameGenerator.GenerateName(4), 4.0, NameGenerator.GenerateName(4), 4, NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), 4, 4, NameGenerator.GenerateName(4));
+        tourLogs.add(genLog); //added
     }
 
     public void addLogAction() {
@@ -190,42 +207,63 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.info("Log has been added");
     }
 
     public void removeLogAction() {
         System.out.println("pressed");
+        logger.info("Log has been removed");
     }
 
-    public void modifyLogAction() {
+    public void modifyLogAction(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logs/editLogWindow.fxml"));
+            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("logs/editLogWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
             stage.setTitle("Edit Log");
             stage.setScene(new Scene(root1));
-            stage.show();
+            stage.show();*/
+            EditLogWindowController editLogWindowController = loadFXML("tours/modifyTourLog.fxml", "Edit Log").getController();
+            //TourItem addedItem = addTourWindowController.addTour(actionEvent);
+            //TODO: remove old and add new
+            tourLogs.add(editLogWindowController.editLog(actionEvent));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.info("Log has been modified");
     }
 
-    public void addTourAction() {
+    public void addTourAction(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/addTourWindow.fxml"));
+            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/addTourWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
             stage.setTitle("Add Tour");
             stage.setScene(new Scene(root1));
-            stage.show();
+            stage.show();*/
+
+            //added code (maybe this whole part should be it's own function?)
+            //AddTourWindowController addTourWindowController = fxmlLoader.getController();
+            AddTourWindowController addTourWindowController = loadFXML("tours/addTourWindow.fxml", "Add Tour").getController();
+            //TourItem addedItem = addTourWindowController.addTour(actionEvent);
+            addTourWindowController.initData(manager, tourItems);
+            //tourItems.add(addTourWindowController.addTour(actionEvent));
+            //tourItems.add(addedItem); //add to view
+            //catch exception with catch or method signature?
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.info("Tour has been added");
     }
 
-    public void removeTourAction() {
-        System.out.println("pressed");
+    public void removeTourAction() throws SQLException {
+        //TODO: working, but as with the add tour action the view doesn't get updated, but there's a workaround for that
+        manager.RemoveTourItem(currentItem.getId()); //remove from db
+        tourItems.remove(currentItem); //remove from view
+        logger.info("Tour has been removed");
     }
 
     public void modifyTourAction() {
@@ -240,5 +278,18 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.info("Tour has been modified");
     }
+
+    public FXMLLoader loadFXML(String fxmlName, String title) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlName));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL); // so the main window can't be used while this pop-up is open
+        stage.setTitle(title);
+        stage.setScene(new Scene(root1));
+        stage.show();
+        return fxmlLoader;
+    }
+
 }

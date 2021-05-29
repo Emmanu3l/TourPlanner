@@ -56,9 +56,13 @@ Kleinere Veränderungen an AddTourWindowController.java (3 Stunden)
 
 27.05.2021: Erweiterung der AddTourWindowController Klasse, beginnen des verschiebens von funktionen vom controller zum view model, implementierung von log4j (ca. 6 Stunden)
 
+28.05.2021: Fehlersuche und Behebung bei der DB, weitere Verbesserungen (ca. 5 Stunden)
+
+29.05.2021: Verbesserungen im MainWindowController, erweitern des TourLogs um mehr Parameter in allen relevanten Klassen, erster erfolgreicher Zugriff auf API, weitere kleine Änderungen
+
 todo: implementierung von viewmodels
 
-TODO
+TODO+
 eigens spezifizierte Tours und Logs hinzugefügen können (im Gegensatz zu den zufällig generierten)
 SQL an neue DB Struktur anpassen sodass randomly generated buttons wieder funktionieren
 .jar to .exe mittels jlink und launch4j

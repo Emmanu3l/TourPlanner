@@ -1,10 +1,10 @@
 package models;
 
-import businesslayer.ConfigurationManager;
+import businesslayer.MapQuest;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TourItem {
 
@@ -29,8 +29,8 @@ public class TourItem {
 
     //maybe this is unnecessary, if you want to get the image there would probably be another method in  another class
     //and you would pass the tour id to get the correct image
-    public String getImagePath() throws FileNotFoundException {
-        return ConfigurationManager.GetConfigProperty("ImagePath") + "\\" + Id; //TODO add file type at end
+    public String generateImage() throws IOException {
+        return MapQuest.createStaticMapImage(this);
     }
 
 }

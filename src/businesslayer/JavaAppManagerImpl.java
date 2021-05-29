@@ -52,8 +52,14 @@ public class JavaAppManagerImpl implements JavaAppManager {
     }
 
     @Override
-    public TourLog CreateTourLog(String logText, TourItem item) throws SQLException {
+    public TourLog CreateTourLog(TourItem item, LocalDateTime creationTime, String report, double distance, String totalTime, int rating, String vehicleType, String averageSpeed, int horsepower, int joule, String description) throws SQLException {
         ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
-        return tourLogDAO.AddNewItemLog(logText, item);
+        return tourLogDAO.AddNewItemLog(item, creationTime, report, distance, totalTime, rating, vehicleType, averageSpeed, horsepower, joule, description);
+    }
+
+    @Override
+    public void RemoveTourItem(Integer itemId) throws SQLException {
+        ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+        tourItemDAO.RemoveItem(itemId);
     }
 }
