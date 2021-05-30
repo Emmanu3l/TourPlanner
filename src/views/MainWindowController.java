@@ -185,26 +185,21 @@ public class MainWindowController implements Initializable {
 
     public void searchAction() throws SQLException {
         viewModel.search(tourItems, manager, searchField);
-        logger.info("Searched for item.");
     }
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
         viewModel.clear(tourItems, manager, searchField);
-        logger.info("Cleared search bar.");
     }
 
-    public void genItemAction(ActionEvent actionEvent) throws SQLException, IOException {
+    public void genItemAction(ActionEvent actionEvent) throws SQLException {
         //TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), LocalDateTime.now());
-        TourItem genItem = manager.CreateTourItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), 42.0);
-        tourItems.add(genItem);
+        viewModel.generateItem(tourItems, manager);
         //generateImage(genItem);
-        logger.info("Item has been randomly generated");
     }
 
     public void genLogAction(ActionEvent actionEvent) throws SQLException {
         //TourLog genLog = manager.CreateTourLog(NameGenerator.GenerateName(40), currentItem);
-        TourLog genLog = manager.CreateTourLog(currentItem, LocalDateTime.now(), NameGenerator.GenerateName(4), 4.0, NameGenerator.GenerateName(4), 4, NameGenerator.GenerateName(4), NameGenerator.GenerateName(4), 4, 4, NameGenerator.GenerateName(4));
-        tourLogs.add(genLog); //added
+        viewModel.generateLog(tourLogs, manager, currentItem);
     }
 
     public void addLogAction() {
@@ -218,9 +213,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void removeLogAction() throws SQLException {
-        manager.RemoveLog(currentLog.getId()); //remove from db
-        tourLogs.remove(currentLog); //remove from view
-        logger.info("Log has been removed");
+        viewModel.removeLog(currentLog, manager, tourLogs);
     }
 
     public void modifyLogAction(ActionEvent actionEvent) {
@@ -253,10 +246,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void removeTourAction() throws SQLException {
-        //TODO: working, but as with the add tour action the view doesn't get updated, but there's a workaround for that
-        manager.RemoveTourItem(currentItem.getId()); //remove from db
-        tourItems.remove(currentItem); //remove from view
-        logger.info("Tour has been removed");
+        viewModel.removeTour(currentItem, manager, tourItems);
     }
 
     public void modifyTourAction() {
