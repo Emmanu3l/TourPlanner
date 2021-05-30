@@ -47,7 +47,8 @@
                 <Label text="Tours: " />
                 <Button fx:id="addTour" onAction="#addTourAction" text="+" />
                 <Button fx:id="removeTour" onAction="#removeTourAction" text="-" />
-                <Button fx:id="modifyTour" onAction="#modifyTourAction" text="[]" />
+                <Button fx:id="modifyTour" onAction="#modifyTourAction" text="Edit tour" />
+                <Button fx:id="copyTour" onAction="#copyTourAction" text="Duplicate tour" />
             </HBox>
             <VBox>
                 <ListView fx:id="listTourItems" /> <!-- added -->
@@ -73,9 +74,10 @@
                 <VBox>
                     <HBox prefHeight="0.0" prefWidth="1019.0">
                         <Label text="Logs: " />
-                            <Button fx:id="addLog" onAction="#addLogAction" text="+" />
-                            <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
-                            <Button fx:id="modifyLog" onAction="#modifyLogAction" text="[]" />
+                        <Button fx:id="addLog" onAction="#addLogAction" text="+" />
+                        <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
+                        <Button fx:id="modifyLog" onAction="#modifyLogAction" text="Edit log" />
+                        <Button fx:id="copyLog" onAction="#copyLogAction" text="Duplicate log" />
                     </HBox>
                     <ListView fx:id="listTourLogs" />
                     <!--<TableView prefHeight="475.0" prefWidth="1019.0">

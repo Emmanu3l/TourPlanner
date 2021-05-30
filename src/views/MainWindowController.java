@@ -86,6 +86,8 @@ public class MainWindowController implements Initializable {
     public ListView<TourItem> listTourItems;
     public ListView<TourLog> listTourLogs; //added
     public VBox previewSelectedTour; //TODO: use this instead of having a separate window for editing tours, hier vielleicht auch ein image preview verwenden, auch ein log preview rechts von der liste hinzufügen
+    public Button copyTour;
+    public Button copyLog;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -116,9 +118,11 @@ public class MainWindowController implements Initializable {
         previewSelectedTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
         removeTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         modifyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+        copyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
 
         modifyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
+        copyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
     }
 
     private void SetupListView() throws SQLException {
@@ -225,7 +229,7 @@ public class MainWindowController implements Initializable {
             stage.setTitle("Edit Log");
             stage.setScene(new Scene(root1));
             stage.show();*/
-            EditLogWindowController editLogWindowController = loadFXML("tours/modifyTourLog.fxml", "Edit Log").getController();
+            EditLogWindowController editLogWindowController = loadFXML("logs/editLogWindow.fxml", "Edit Log").getController();
             //TourItem addedItem = addTourWindowController.addTour(actionEvent);
             //TODO: remove old and add new
             tourLogs.add(editLogWindowController.editLog(actionEvent));
@@ -275,4 +279,9 @@ public class MainWindowController implements Initializable {
         return fxmlLoader;
     }
 
+    public void copyTourAction(ActionEvent actionEvent) {
+    }
+
+    public void copyLogAction(ActionEvent actionEvent) {
+    }
 }
