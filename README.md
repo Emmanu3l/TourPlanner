@@ -58,7 +58,10 @@ Kleinere Veränderungen an AddTourWindowController.java (3 Stunden)
 
 28.05.2021: Fehlersuche und Behebung bei der DB, weitere Verbesserungen (ca. 5 Stunden)
 
-29.05.2021: Verbesserungen im MainWindowController, erweitern des TourLogs um mehr Parameter in allen relevanten Klassen, erster erfolgreicher Zugriff auf API, weitere kleine Änderungen
+29.05.2021: Verbesserungen im MainWindowController, erweitern des TourLogs um mehr Parameter in allen relevanten Klassen, erster erfolgreicher Zugriff auf API, 
+weitere kleine Änderungen, Implementierung der Klassen und fxml Files, welche mit der addLog Interaktion zusammenhängen (ca. 6 Stunden)
+
+30.05.2021: Funktion zum löschen von Logs implementiert
 
 todo: implementierung von viewmodels
 

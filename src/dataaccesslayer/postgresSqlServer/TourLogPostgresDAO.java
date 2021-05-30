@@ -21,6 +21,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     private final String SQL_FIND_BY_TOURITEM = "SELECT * FROM public.\"TourLogs\" WHERE \"TourItemId\"=CAST(? AS INTEGER);";
     private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"TourItemId\", \"CreationTime\", \"Report\", \"Distance\", \"TotalTime\", \"Rating\", \"VehicleType\", \"AverageSpeed\", \"Horsepower\", \"Joule\", \"Description\") VALUES (CAST(? AS INTEGER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private final String SQL_GET_ALL_LOGS = "SELECT * FROM public.\"TourLogs\";"; //added
+    private final String SQL_REMOVE_LOG = "DELETE FROM public.\"TourLogs\" WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
     private ITourItemDAO tourItemDAO;
@@ -74,5 +75,10 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     @Override
     public List<TourLog> GetLogs() throws SQLException {
         return database.TourReader(SQL_GET_ALL_LOGS, TourLog.class);
+    }
+
+    @Override
+    public void RemoveLog(Integer id) throws SQLException {
+        database.Remove(SQL_REMOVE_LOG, id);
     }
 }

@@ -96,6 +96,8 @@ public class MainWindowController implements Initializable {
 
     static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
 
+    private TourLog currentLog;
+
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,6 +109,7 @@ public class MainWindowController implements Initializable {
         SetupListView();
         FormatCells();
         SetCurrentItem();
+        SetCurrentLog();
 
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
@@ -172,6 +175,14 @@ public class MainWindowController implements Initializable {
         }));
     }
 
+    private void SetCurrentLog() {
+        listTourLogs.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if ((newValue != null) && (oldValue != newValue)) {
+                currentLog = newValue;
+            }
+        }));
+    }
+
     public void searchAction() throws SQLException {
         viewModel.search(tourItems, manager, searchField);
         logger.info("Searched for item.");
@@ -206,8 +217,9 @@ public class MainWindowController implements Initializable {
         logger.info("Log window has been opened");
     }
 
-    public void removeLogAction() {
-        System.out.println("pressed");
+    public void removeLogAction() throws SQLException {
+        manager.RemoveLog(currentLog.getId()); //remove from db
+        tourLogs.remove(currentLog); //remove from view
         logger.info("Log has been removed");
     }
 
