@@ -46,6 +46,7 @@ public class AddTourWindowController implements Initializable {
     }
 
     //TODO: get distance from API
+    //TODO: move stuff into viewmodel?
 
     public void addTour(ActionEvent actionEvent) throws SQLException {
         double distanceValue = 0; //TODO: introduce more default value? Perhaps in AddLog too?

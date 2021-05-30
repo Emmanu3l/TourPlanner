@@ -279,9 +279,17 @@ public class MainWindowController implements Initializable {
         return fxmlLoader;
     }
 
-    public void copyTourAction(ActionEvent actionEvent) {
+    public void copyTourAction(ActionEvent actionEvent) throws SQLException {
+        //viewModel.copyTour()
+        TourItem copiedItem = manager.CreateTourItem(currentItem.getName(), currentItem.getOrigin(), currentItem.getDestination(), currentItem.getDescription(), currentItem.getDistance());
+        tourItems.add(copiedItem);
+        logger.info("Tour has been duplicated");
     }
 
-    public void copyLogAction(ActionEvent actionEvent) {
+    public void copyLogAction(ActionEvent actionEvent) throws SQLException {
+        //viewModel.copyTour()
+        TourLog copiedLog = manager.CreateTourLog(currentLog.getLogTourItem(), currentLog.getCreationTime(), currentLog.getReport(), currentLog.getDistance(), currentLog.getTotalTime(), currentLog.getRating(), currentLog.getVehicleType(), currentLog.getAverageSpeed(), currentLog.getHorsepower(), currentLog.getJoule(), currentLog.getDescription());
+        tourLogs.add(copiedLog);
+        logger.info("Log has been duplicated");
     }
 }

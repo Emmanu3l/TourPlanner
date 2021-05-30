@@ -62,7 +62,7 @@ Kleinere Veränderungen an AddTourWindowController.java (3 Stunden)
 weitere kleine Änderungen, Implementierung der Klassen und fxml Files, welche mit der addLog Interaktion zusammenhängen (ca. 6 Stunden)
 
 30.05.2021: Funktion zum löschen von Logs implementiert, weitere Funktionalität in das ViewModel verschoben, import von iText pdf und erste rudimentäre Implementierung, 
-erstellen (und implementieren) der copyTour und copyLog Funktionen
+erstellen und implementieren der copyTour und copyLog Funktionen
 
 
 
