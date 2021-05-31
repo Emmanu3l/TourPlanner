@@ -68,14 +68,17 @@
                         <Tab text="Route">
                         <!--<TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />-->
                             <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewRoute" />
-                    </Tab>
-                    <Tab text="Description">
-                        <!--<TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />-->
-                        <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDescription"/>
-                    </Tab>
-                    <Tab text="Distance">
-                        <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDistance"/>
-                    </Tab>
+                        </Tab>
+                        <Tab text="Description">
+                            <!--<TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />-->
+                            <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDescription"/>
+                        </Tab>
+                        <Tab text="Distance">
+                            <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDistance"/>
+                        </Tab>
+                        <Tab text="ID">
+                            <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewId"/>
+                        </Tab>
                     </TabPane>
                 </VBox>
                 <ImageView fx:id="previewImage" />

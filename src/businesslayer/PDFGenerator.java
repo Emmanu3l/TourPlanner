@@ -27,4 +27,12 @@ public class PDFGenerator {
         }
 
     }
+
+    public static void addedTour() {
+
+    }
+
+    public static void appendParagraph() {
+
+    }
 }

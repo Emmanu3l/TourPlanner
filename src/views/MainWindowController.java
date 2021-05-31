@@ -99,6 +99,7 @@ public class MainWindowController implements Initializable {
     public Label previewDistance;
     public ImageView previewImage;
     public Button generateImage;
+    public Label previewId;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -206,6 +207,7 @@ public class MainWindowController implements Initializable {
                 previewRoute.setText("Von " + currentItem.getOrigin() + " nach " + currentItem.getDestination());
                 previewDescription.setText(currentItem.getDescription());
                 previewDistance.setText(currentItem.getDistance() + "");
+                previewId.setText(currentItem.getId().toString());
             }
         }));
     }
