@@ -134,6 +134,23 @@ public class Database implements IDatabase {
         }
     }
 
+    @Override
+    public void Update(String sql_update_item, ArrayList<Object> parameters) throws SQLException {
+        try (Connection connection = CreateConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql_update_item)) {
+
+            // dynamically add parameters
+            for (int i = 0; i < parameters.size(); i++) {
+                preparedStatement.setString(i + 1, parameters.get(i).toString());
+            }
+            preparedStatement.executeUpdate(); // wird für insert, update, delete verwendet
+
+        } catch (SQLException e) { //das catch and throw statement versteckt womöglich eigentliche hilfreiche fehlermeldungen
+            e.printStackTrace();
+        }
+        //throw new SQLException("Updating data failed, no ID obtained. " + sql_update_item);
+    }
+
     private List<TourItem> QueryTourItemDataFromResultSet(ResultSet result) throws SQLException {
         List<TourItem> tourItemList = new ArrayList<TourItem>();
 

@@ -15,4 +15,5 @@ public interface JavaAppManager {
     TourLog CreateTourLog(TourItem item, LocalDateTime creationTime, String report, double distance, String totalTime, int rating, String vehicleType, String averageSpeed, int horsepower, int joule, String description) throws SQLException;
     void RemoveTourItem(Integer itemId) throws SQLException;
     void RemoveLog(Integer id) throws SQLException;
+    void EditTourItem(Integer id, TourItem modifiedItem) throws SQLException;
 }

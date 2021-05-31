@@ -31,6 +31,12 @@ public class MapQuest {
         return imagePath;
     }
 
+    //do i need this though? doesn't it get automatically overwritten because it has the same name? if it doesn't i should just add that aspect (delete file with same name) to the above function
+    /*public static String deleteStaticMapImage(TourItem tourItem) {
+        String imagePath = ConfigurationManager.GetConfigProperty("ImagePath") + tourItem.getId() + ".png";
+
+    }*/
+
     //directions api: https://developer.mapquest.com/documentation/directions-api/
     public void getDirections() {
         String resourceURL = "http://www.mapquestapi.com/directions/v2/route";

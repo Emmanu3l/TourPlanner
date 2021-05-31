@@ -12,4 +12,6 @@ public interface ITourItemDAO {
     List<TourItem> GetItems() throws SQLException; // gibt all tour items zurück, daher keine parameter vonnöten
 
     void RemoveItem(int itemId) throws SQLException;
+
+    void EditItem(Integer id, TourItem modifiedItem) throws SQLException;
 }

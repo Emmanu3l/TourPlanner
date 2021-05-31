@@ -29,8 +29,8 @@ public class TourItem {
 
     //maybe this is unnecessary, if you want to get the image there would probably be another method in  another class
     //and you would pass the tour id to get the correct image
-    public String generateImage() throws IOException {
+    /*public String generateImage() throws IOException {
         return MapQuest.createStaticMapImage(this);
-    }
+    }*/
 
 }

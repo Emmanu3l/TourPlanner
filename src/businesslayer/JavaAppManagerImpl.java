@@ -68,4 +68,10 @@ public class JavaAppManagerImpl implements JavaAppManager {
         ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
         tourLogDAO.RemoveLog(id);
     }
+
+    @Override
+    public void EditTourItem(Integer id, TourItem modifiedItem) throws SQLException {
+        ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+        tourItemDAO.EditItem(id, modifiedItem);
+    }
 }

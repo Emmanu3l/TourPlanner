@@ -11,4 +11,16 @@
             fx:controller="views.tours.EditTourWindowController"
             prefHeight="400.0" prefWidth="600.0">
 
+    <VBox>
+        <Label text="Title: " GridPane.columnIndex="1" />
+        <TextField fx:id="name" promptText="Name the tour" GridPane.columnIndex="1" />
+        <TextField fx:id="origin" prefHeight="79.0" prefWidth="971.0" promptText="Write the origin here" />
+        <TextField fx:id="destination" prefHeight="79.0" prefWidth="971.0" promptText="Write the destination here" />
+        <TextField fx:id="description" prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
+        <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
+        <Button fx:id="modifyTour" onAction="#editTour">Modify this tour</Button>
+
+    </VBox>
+
+
 </AnchorPane>

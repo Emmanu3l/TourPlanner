@@ -3,18 +3,18 @@ package views;
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
 import businesslayer.MapQuest;
-import businesslayer.NameGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,11 +27,14 @@ import viewmodels.MainWindowViewModel;
 import views.logs.AddLogWindowController;
 import views.logs.EditLogWindowController;
 import views.tours.AddTourWindowController;
+import views.tours.EditTourWindowController;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -85,9 +88,17 @@ public class MainWindowController implements Initializable {
     public TextField searchField;
     public ListView<TourItem> listTourItems;
     public ListView<TourLog> listTourLogs; //added
-    public VBox previewSelectedTour; //TODO: use this instead of having a separate window for editing tours, hier vielleicht auch ein image preview verwenden, auch ein log preview rechts von der liste hinzufügen
+
     public Button copyTour;
     public Button copyLog;
+
+    public VBox previewCurrentItem; //TODO: use this instead of having a separate window for editing tours, hier vielleicht auch ein image preview verwenden, auch ein log preview rechts von der liste hinzufügen
+    public Label previewTitle;
+    public Label previewRoute;
+    public Label previewDescription;
+    public Label previewDistance;
+    public ImageView previewImage;
+    public Button generateImage;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -112,13 +123,15 @@ public class MainWindowController implements Initializable {
         FormatCells();
         SetCurrentItem();
         SetCurrentLog();
+        PreviewCurrentItem();
 
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
-        previewSelectedTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
+        previewCurrentItem.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
         removeTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         modifyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         copyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+        generateImage.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
 
         modifyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
@@ -150,7 +163,13 @@ public class MainWindowController implements Initializable {
                 if (empty || (item == null) || (item.getName() == null)) {
                     setText(null);
                 } else {
-                    setText(item.getName());
+                    setText(item.getName()); //originally, there was only this
+                    //the following only overrides the last value, not set multiple values
+                    /*setText(item.getId().toString());
+                    setText(item.getOrigin());
+                    setText(item.getDestination());
+                    setText(item.getDescription());
+                    setText(item.getDistance() + "");*/
                 }
             }
         }));
@@ -178,6 +197,19 @@ public class MainWindowController implements Initializable {
             }
         }));
     }
+
+    private void PreviewCurrentItem() {
+        //perhaps i should just call this function inside of setcurrentitem?
+        listTourItems.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if ((newValue != null) && (oldValue != newValue)) {
+                previewTitle.setText(currentItem.getName());
+                previewRoute.setText("Von " + currentItem.getOrigin() + " nach " + currentItem.getDestination());
+                previewDescription.setText(currentItem.getDescription());
+                previewDistance.setText(currentItem.getDistance() + "");
+            }
+        }));
+    }
+
 
     private void SetCurrentLog() {
         listTourLogs.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -230,13 +262,14 @@ public class MainWindowController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.show();*/
             EditLogWindowController editLogWindowController = loadFXML("logs/editLogWindow.fxml", "Edit Log").getController();
+            editLogWindowController.initData(currentLog, manager, tourLogs);
             //TourItem addedItem = addTourWindowController.addTour(actionEvent);
             //TODO: remove old and add new
-            tourLogs.add(editLogWindowController.editLog(actionEvent));
+            //tourLogs.add(editLogWindowController.editLog(actionEvent));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Log has been modified");
+        logger.info("Modify log window has been opened");
     }
 
     public void addTourAction(ActionEvent actionEvent) {
@@ -254,7 +287,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void modifyTourAction() {
-        try {
+        /*try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("tours/editTourWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -264,8 +297,14 @@ public class MainWindowController implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        try {
+            EditTourWindowController editTourWindowController = loadFXML("tours/editTourWindow.fxml", "Edit Tour").getController();
+            editTourWindowController.initData(currentItem, manager, tourItems);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        logger.info("Tour has been modified");
+        logger.info("Modify tour window has been opened");
     }
 
     public FXMLLoader loadFXML(String fxmlName, String title) throws IOException {
@@ -291,5 +330,23 @@ public class MainWindowController implements Initializable {
         TourLog copiedLog = manager.CreateTourLog(currentLog.getLogTourItem(), currentLog.getCreationTime(), currentLog.getReport(), currentLog.getDistance(), currentLog.getTotalTime(), currentLog.getRating(), currentLog.getVehicleType(), currentLog.getAverageSpeed(), currentLog.getHorsepower(), currentLog.getJoule(), currentLog.getDescription());
         tourLogs.add(copiedLog);
         logger.info("Log has been duplicated");
+    }
+
+    public void setPreviewImage() throws IOException {
+        Stage stage = new Stage();
+        String imagePath = MapQuest.createStaticMapImage(currentItem);
+        InputStream stream = new FileInputStream(imagePath);
+        Image image = new Image(stream);
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        imageView.setPreserveRatio(true);
+        //imageView.setFitWidth(600); //optional
+        imageView.fitWidthProperty().bind(stage.widthProperty());
+        imageView.fitHeightProperty().bind(stage.heightProperty());
+        Group root = new Group(imageView);
+        Scene scene = new Scene(root);
+        stage.setTitle("Tour map");
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
 <VBox prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainWindowController">
     <MenuBar>
         <Menu text="File">
@@ -56,37 +57,45 @@
         </VBox>
         <SplitPane>
             <VBox>
-                <VBox fx:id="previewSelectedTour">
+                <VBox fx:id="previewCurrentItem">
                     <HBox>
                         <Label text="Title: " GridPane.columnIndex="1" />
-                        <TextField promptText="Name the tour" GridPane.columnIndex="1" />
+                    <!--<TextField promptText="Name the tour" GridPane.columnIndex="1" />-->
+                        <Label fx:id="previewTitle" GridPane.columnIndex="1" />
 
                     </HBox>
                     <TabPane tabClosingPolicy="UNAVAILABLE">
                         <Tab text="Route">
-                            <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />
-                        </Tab>
-                        <Tab text="Description">
-                            <TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />
-                        </Tab>
+                        <!--<TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your route text here" />-->
+                            <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewRoute" />
+                    </Tab>
+                    <Tab text="Description">
+                        <!--<TextField prefHeight="79.0" prefWidth="971.0" promptText="Write your description text here" />-->
+                        <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDescription"/>
+                    </Tab>
+                    <Tab text="Distance">
+                        <Label prefHeight="79.0" prefWidth="971.0" fx:id="previewDistance"/>
+                    </Tab>
                     </TabPane>
                 </VBox>
-                <VBox>
-                    <HBox prefHeight="0.0" prefWidth="1019.0">
-                        <Label text="Logs: " />
-                        <Button fx:id="addLog" onAction="#addLogAction" text="+" />
-                        <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
-                        <Button fx:id="modifyLog" onAction="#modifyLogAction" text="Edit log" />
-                        <Button fx:id="copyLog" onAction="#copyLogAction" text="Duplicate log" />
-                    </HBox>
-                    <ListView fx:id="listTourLogs" />
-                    <!--<TableView prefHeight="475.0" prefWidth="1019.0">
-                        <columns>
-                            <TableColumn text="Date" />
-                            <TableColumn text="Duration" />
-                            <TableColumn text="Distance" />
-                        </columns>
-                    </TableView>-->
+                <ImageView fx:id="previewImage" />
+                <Button fx:id="generateImage" onAction="#setPreviewImage" text="Generate map"/>
+            <VBox>
+            <HBox prefHeight="0.0" prefWidth="1019.0">
+                <Label text="Logs: " />
+                <Button fx:id="addLog" onAction="#addLogAction" text="+" />
+                <Button fx:id="removeLog" onAction="#removeLogAction" text="-" />
+                <Button fx:id="modifyLog" onAction="#modifyLogAction" text="Edit log" />
+                <Button fx:id="copyLog" onAction="#copyLogAction" text="Duplicate log" />
+            </HBox>
+            <ListView fx:id="listTourLogs" />
+            <!--<TableView prefHeight="475.0" prefWidth="1019.0">
+                <columns>
+                    <TableColumn text="Date" />
+                    <TableColumn text="Duration" />
+                    <TableColumn text="Distance" />
+                </columns>
+            </TableView>-->
                 </VBox>
             </VBox>
         </SplitPane>

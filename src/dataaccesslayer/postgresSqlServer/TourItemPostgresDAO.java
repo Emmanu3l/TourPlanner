@@ -22,6 +22,8 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     private final String SQL_GET_ALL_ITEMS = "SELECT * FROM public.\"TourItems\";";
     private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Origin\",\"Destination\",\"Description\",\"Distance\") VALUES (?, ?, ?, ?, ?);";
     private final String SQL_REMOVE_ITEM = "DELETE FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
+    //private final String SQL_UPDATE_ITEM = "UPDATE public.\"TourItems\" SET (\"Name\"=?,\"Origin\"=?,\"Destination\"=?,\"Description\"=?,\"Distance\"=?) WHERE \"Id\"=CAST(? AS INTEGER);";
+    private final String SQL_UPDATE_ITEM = "UPDATE public.\"TourItems\" SET \"Name\"=?,\"Origin\"=?,\"Destination\"=?,\"Description\"=?,\"Distance\"=? WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
 
@@ -60,5 +62,17 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     @Override
     public void RemoveItem(int itemId) throws SQLException {
         database.Remove(SQL_REMOVE_ITEM, itemId);
+    }
+
+    @Override
+    public void EditItem(Integer id, TourItem modifiedItem) throws SQLException {
+        ArrayList<Object> parameters = new ArrayList<>();
+        parameters.add(modifiedItem.getName());
+        parameters.add(modifiedItem.getOrigin());
+        parameters.add(modifiedItem.getDestination());
+        parameters.add(modifiedItem.getDescription());
+        parameters.add(modifiedItem.getDistance());
+        parameters.add(id);
+        database.Update(SQL_UPDATE_ITEM, parameters);
     }
 }

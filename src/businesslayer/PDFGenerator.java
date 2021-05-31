@@ -9,6 +9,9 @@ import java.io.FileOutputStream;
 
 public class PDFGenerator {
     //TODO: this is technically working, but of course it doesn't do anything yet
+
+    //TODO: idea: print out new tours, total tours, new logs, total logs, number of searches, number of api requests etc
+
     //read: https://kb.itextpdf.com/home/it7kb/examples/itext-7-jump-start-tutorial-chapter-1
     //and: http://tutorials.jenkov.com/java-itext/getting-started.html
 
