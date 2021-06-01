@@ -3,6 +3,7 @@ package views;
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
 import businesslayer.MapQuest;
+import businesslayer.PDFGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +74,25 @@ public class MainWindowController implements Initializable {
     // optionally - from maven: org.apache.logging.log4j:log4j-1.2-api:2.14.1
     //TODO: falls du log4j from maven nutzt, lösch log4j aus dem lib folder
 
+
+    //01.06.2021
+    //TODO: information von MapQuest in die Attribute einfügen bei set image (distance etc.)!
+    //TODO: bei edit alte values inserten
+    //TODO: required fields mit stern kennzeichnen und programmintern input validation anwenden
+    //TODO: log sollte auch daten von mapquest oder von der tour nehmen
+    //TODO: export import in json? ist das pflicht?
+    //TODO: preset values für ratings und vehicle type inkl. drop down
+    //TODO: reports erstellen
+    //TODO: Unit tests!
+    //TODO: progress bar wenn foto geöffnet wird
+    //TODO: distance sollte (aber muss nicht) über mapquest geholt werden
+    //TODO: theoretisch muss mapquest nur als bild download tool verwendet werden
+    //TODO: sollte der search komplexer werden?
+    //TODO: json import/export wäre nicht schlecht, am besten dann über das file menu
+    //TODO: daten in html verwandeln und dann in pdf einfügen?
+    //TODO: validation: zb bei distance nur integer erlauben
+    //TODO: cascading delete wenn man eine tour löscht und es dafür noch logs gibt
+
     public Button search;
     public Button clear;
 
@@ -124,10 +144,13 @@ public class MainWindowController implements Initializable {
         FormatCells();
         SetCurrentItem();
         SetCurrentLog();
-        PreviewCurrentItem();
+        //PreviewCurrentItem();
+
+        PDFGenerator.generatePDF(tourItems.size(), tourLogs.size());
 
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
+        addLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         previewCurrentItem.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
         removeTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         modifyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
@@ -137,6 +160,7 @@ public class MainWindowController implements Initializable {
         modifyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         copyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
+
     }
 
     private void SetupListView() throws SQLException {
@@ -195,11 +219,16 @@ public class MainWindowController implements Initializable {
         listTourItems.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((newValue != null) && (oldValue != newValue)) {
                 currentItem = newValue;
+                previewTitle.setText(currentItem.getName());
+                previewRoute.setText("Von " + currentItem.getOrigin() + " nach " + currentItem.getDestination());
+                previewDescription.setText(currentItem.getDescription());
+                previewDistance.setText(currentItem.getDistance() + "");
+                previewId.setText(currentItem.getId().toString());
             }
         }));
     }
 
-    private void PreviewCurrentItem() {
+    /*private void PreviewCurrentItem() {
         //perhaps i should just call this function inside of setcurrentitem?
         listTourItems.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             if ((newValue != null) && (oldValue != newValue)) {
@@ -210,7 +239,7 @@ public class MainWindowController implements Initializable {
                 previewId.setText(currentItem.getId().toString());
             }
         }));
-    }
+    }*/
 
 
     private void SetCurrentLog() {
@@ -321,17 +350,11 @@ public class MainWindowController implements Initializable {
     }
 
     public void copyTourAction(ActionEvent actionEvent) throws SQLException {
-        //viewModel.copyTour()
-        TourItem copiedItem = manager.CreateTourItem(currentItem.getName(), currentItem.getOrigin(), currentItem.getDestination(), currentItem.getDescription(), currentItem.getDistance());
-        tourItems.add(copiedItem);
-        logger.info("Tour has been duplicated");
+        viewModel.copyTour(manager, tourItems, currentItem);
     }
 
     public void copyLogAction(ActionEvent actionEvent) throws SQLException {
-        //viewModel.copyTour()
-        TourLog copiedLog = manager.CreateTourLog(currentLog.getLogTourItem(), currentLog.getCreationTime(), currentLog.getReport(), currentLog.getDistance(), currentLog.getTotalTime(), currentLog.getRating(), currentLog.getVehicleType(), currentLog.getAverageSpeed(), currentLog.getHorsepower(), currentLog.getJoule(), currentLog.getDescription());
-        tourLogs.add(copiedLog);
-        logger.info("Log has been duplicated");
+        viewModel.copyLog(manager, tourLogs, currentLog);
     }
 
     public void setPreviewImage() throws IOException {

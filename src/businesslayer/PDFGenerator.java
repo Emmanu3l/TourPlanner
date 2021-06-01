@@ -15,12 +15,14 @@ public class PDFGenerator {
     //read: https://kb.itextpdf.com/home/it7kb/examples/itext-7-jump-start-tutorial-chapter-1
     //and: http://tutorials.jenkov.com/java-itext/getting-started.html
 
-    public static void generatePDF() {
+    public static void generatePDF(int tourCount, int logCount) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("TourPlannerReport.pdf"));
             document.open();
             document.add(new Paragraph("Information on the Tour Planner"));
+            document.add(new Paragraph("Number of Tours: " + tourCount));
+            document.add(new Paragraph("Number of Logs: " + logCount));
             document.close();
         } catch (Exception e) {
             e.printStackTrace();

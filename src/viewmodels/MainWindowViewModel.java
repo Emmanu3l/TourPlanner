@@ -60,4 +60,16 @@ public class MainWindowViewModel {
         tourLogs.remove(currentLog); //remove from view
         logger.info("Log has been removed");
     }
+
+    public void copyTour(JavaAppManager manager, ObservableList<TourItem> tourItems, TourItem currentItem) throws SQLException {
+        TourItem copiedItem = manager.CreateTourItem(currentItem.getName(), currentItem.getOrigin(), currentItem.getDestination(), currentItem.getDescription(), currentItem.getDistance());
+        tourItems.add(copiedItem);
+        logger.info("Tour has been duplicated");
+    }
+
+    public void copyLog(JavaAppManager manager, ObservableList<TourLog> tourLogs, TourLog currentLog) throws SQLException {
+        TourLog copiedLog = manager.CreateTourLog(currentLog.getLogTourItem(), currentLog.getCreationTime(), currentLog.getReport(), currentLog.getDistance(), currentLog.getTotalTime(), currentLog.getRating(), currentLog.getVehicleType(), currentLog.getAverageSpeed(), currentLog.getHorsepower(), currentLog.getJoule(), currentLog.getDescription());
+        tourLogs.add(copiedLog);
+        logger.info("Log has been duplicated");
+    }
 }

@@ -22,6 +22,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"TourItemId\", \"CreationTime\", \"Report\", \"Distance\", \"TotalTime\", \"Rating\", \"VehicleType\", \"AverageSpeed\", \"Horsepower\", \"Joule\", \"Description\") VALUES (CAST(? AS INTEGER), ?, ?, CAST(? AS DOUBLE PRECISION), ?, CAST(? AS INTEGER), ?, ?, CAST(? AS INTEGER), CAST(? AS INTEGER), ?);";
     private final String SQL_GET_ALL_LOGS = "SELECT * FROM public.\"TourLogs\";"; //added
     private final String SQL_REMOVE_LOG = "DELETE FROM public.\"TourLogs\" WHERE \"Id\"=CAST(? AS INTEGER);";
+    private final String SQL_UPDATE_LOG = "UPDATE public.\"TourLogs\" SET \"TourItemId\"=?, \"CreationTime\"=?, \"Report\"=?, \"Distance\"=CAST(? AS DOUBLE PRECISION), \"TotalTime\"=?, \"Rating\"=CAST(? AS INTEGER), \"VehicleType\"=?, \"AverageSpeed\"=?, \"Horsepower\"=CAST(? AS INTEGER), \"Joule\"=CAST(? AS INTEGER), \"Description\"=? WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
     private ITourItemDAO tourItemDAO;
@@ -64,6 +65,27 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     }
 
     @Override
+    public void EditLog(TourLog modifiedLog) throws SQLException {
+        //TODO:
+        ArrayList<Object> parameters = new ArrayList<>();
+        parameters.add(modifiedLog.getLogTourItem().getId());
+        parameters.add(modifiedLog.getCreationTime());
+        parameters.add(modifiedLog.getReport());
+        parameters.add(modifiedLog.getDistance());
+        parameters.add(modifiedLog.getTotalTime());
+        parameters.add(modifiedLog.getRating());
+        parameters.add(modifiedLog.getVehicleType());
+        parameters.add(modifiedLog.getAverageSpeed());
+        parameters.add(modifiedLog.getHorsepower());
+        parameters.add(modifiedLog.getJoule());
+        parameters.add(modifiedLog.getDescription());
+
+        parameters.add(modifiedLog.getId());
+        database.Update(SQL_UPDATE_LOG, parameters);
+    }
+
+
+    @Override
     public List<TourLog> GetLogsForItem(TourItem item) throws SQLException {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(item.getId());
@@ -81,4 +103,5 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     public void RemoveLog(Integer id) throws SQLException {
         database.Remove(SQL_REMOVE_LOG, id);
     }
+
 }

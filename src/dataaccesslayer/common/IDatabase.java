@@ -11,5 +11,5 @@ public interface IDatabase {
 
     void Remove(String SQL_REMOVE_ITEM, int itemId) throws SQLException;
 
-    void Update(String sql_update_item, ArrayList<Object> id) throws SQLException;
+    void Update(String sql_update_item, ArrayList<Object> parameters) throws SQLException;
 }

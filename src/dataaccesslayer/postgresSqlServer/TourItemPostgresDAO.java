@@ -22,7 +22,7 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     private final String SQL_GET_ALL_ITEMS = "SELECT * FROM public.\"TourItems\";";
     private final String SQL_INSERT_NEW_ITEM = "INSERT INTO public.\"TourItems\" (\"Name\",\"Origin\",\"Destination\",\"Description\",\"Distance\") VALUES (?, ?, ?, ?, CAST(? AS DOUBLE PRECISION));";
     private final String SQL_REMOVE_ITEM = "DELETE FROM public.\"TourItems\" WHERE \"Id\"=CAST(? AS INTEGER);";
-    private final String SQL_UPDATE_ITEM = "UPDATE public.\"TourItems\" SET \"Name\"=?,\"Origin\"=?,\"Destination\"=?,\"Description\"=?,\"Distance\"=? WHERE \"Id\"=CAST(? AS INTEGER);";
+    private final String SQL_UPDATE_ITEM = "UPDATE public.\"TourItems\" SET \"Name\"=?,\"Origin\"=?,\"Destination\"=?,\"Description\"=?,\"Distance\"=CAST(? AS DOUBLE PRECISION) WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
 

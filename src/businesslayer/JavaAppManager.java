@@ -16,4 +16,5 @@ public interface JavaAppManager {
     void RemoveTourItem(Integer itemId) throws SQLException;
     void RemoveLog(Integer id) throws SQLException;
     void EditTourItem(Integer id, TourItem modifiedItem) throws SQLException;
+    void EditTourLog(TourLog modifiedLog) throws SQLException;
 }

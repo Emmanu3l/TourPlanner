@@ -3,6 +3,7 @@ package views.tours;
 import businesslayer.JavaAppManager;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.TourItem;
@@ -10,7 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import views.MainWindowController;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class EditTourWindowController {
 
@@ -31,6 +34,12 @@ public class EditTourWindowController {
         this.currentItem = currentItem;
         this.manager = manager;
         this.tourItems = tourItems;
+
+        name.setText(currentItem.getName());
+        origin.setText(currentItem.getOrigin());
+        destination.setText(currentItem.getDestination());
+        description.setText(currentItem.getDescription());
+        distance.setText(currentItem.getDistance() + "");
     }
 
     public void editTour(ActionEvent actionEvent) throws SQLException {
