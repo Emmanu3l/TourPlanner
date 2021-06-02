@@ -69,7 +69,7 @@ erstellen und implementieren der copyTour und copyLog Funktionen (ca. 4 Stunden)
 01.06.2021: Korrigieren des update tour sql statements. Rudimentäre pdf Generierung. Beibehalten der existierenden Werte beim bearbeiten einer Tour. 
 Mehr MVVM Aspekte. Fortsetzung der Implementierung von modify log. (ca. 3 Stunden)
 
-
+02.06.2021: Weiter daran arbeiten, dass MVVM eingehalten wird
 
 Lessons learned: von nun zum importieren von libraries "from maven" nutzen, das kann ganze Arbeitstage sparen
 
