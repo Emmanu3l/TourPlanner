@@ -7,15 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.TourItem;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import views.MainWindowController;
+import viewmodels.tours.EditTourViewModel;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EditTourWindowController {
+public class EditTourWindowController implements Initializable {
 
     public TextField name;
     public TextField origin;
@@ -28,7 +26,21 @@ public class EditTourWindowController {
     TourItem currentItem;
     private JavaAppManager manager;
     private ObservableList<TourItem> tourItems;
-    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
+
+    public EditTourViewModel viewModel = new EditTourViewModel();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        BindViewModel();
+    }
+
+    private void BindViewModel() {
+        name.textProperty().bindBidirectional(viewModel.getName());
+        origin.textProperty().bindBidirectional(viewModel.getOrigin());
+        destination.textProperty().bindBidirectional(viewModel.getDestination());
+        description.textProperty().bindBidirectional(viewModel.getDescription());
+        distance.textProperty().bindBidirectional(viewModel.getDistance());
+    }
 
     public void initData(TourItem currentItem, JavaAppManager manager, ObservableList<TourItem> tourItems) {
         this.currentItem = currentItem;
@@ -43,18 +55,7 @@ public class EditTourWindowController {
     }
 
     public void editTour(ActionEvent actionEvent) throws SQLException {
-        //TODO: fill the textfields with the current values automatically?
-        //use -1 to signify that this id shouldn't actually be used in the db, it's just a placeholder
-        //or just pass the parameters instead?
-        //maybe use the correct id so you can reuse it when adding the item or generally only need one parameter?
-        TourItem modifiedItem = new TourItem(currentItem.getId(), name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
-        manager.EditTourItem(currentItem.getId(), modifiedItem);
-        tourItems.remove(currentItem);
-        tourItems.add(modifiedItem);
-        logger.info("Tour has been modified");
-        //TODO: working correctly (technically, but it doesn't immediately get update in the list view. use tourItems to remove and re-add?)
-        //TODO: also, make the list views show multiple colums already.
-
+        viewModel.editTour(currentItem, manager, tourItems);
     }
 
 }

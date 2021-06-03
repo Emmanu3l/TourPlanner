@@ -12,9 +12,15 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox>
-        <Label text="Title: " GridPane.columnIndex="1" />
-        <TextField fx:id="logTourItem" promptText="You cannot change the associated tour" GridPane.columnIndex="1" />
-        <TextField fx:id="creationTime" prefHeight="79.0" prefWidth="971.0" promptText="You cannot change the creation time" />
+        <!--<Label text="Title: " GridPane.columnIndex="1" />-->
+        <HBox>
+            <Label text="Associated tour ID: " GridPane.columnIndex="1" />
+            <Label fx:id="logTourItem" GridPane.columnIndex="1" />
+        </HBox>
+        <HBox>
+            <Label text="Creation time: " GridPane.columnIndex="1" />
+            <Label fx:id="creationTime" prefHeight="79.0" prefWidth="971.0" />
+        </HBox>
         <TextField fx:id="report" prefHeight="79.0" prefWidth="971.0" promptText="Write the report here" />
         <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
         <TextField fx:id="totalTime" prefHeight="79.0" prefWidth="971.0" promptText="Write the total time here" />
@@ -26,7 +32,7 @@
         <TextField fx:id="joule" prefHeight="79.0" prefWidth="971.0" promptText="Write the joule value here" />
         <TextField fx:id="description" prefHeight="79.0" prefWidth="971.0" promptText="Write the description here" />
 
-        <Button fx:id="modifyLog" onAction="#editLog">Modify this tour</Button>
+        <Button fx:id="modifyLog" onAction="#editLog">Modify this log</Button>
 
     </VBox>
 

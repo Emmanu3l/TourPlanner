@@ -12,9 +12,12 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <VBox>
-        <Label text="Title: " GridPane.columnIndex="1" />
-        <TextField fx:id="logTourItem" promptText="You cannot change the associated tour" GridPane.columnIndex="1" />
-        <TextField fx:id="creationTime" prefHeight="79.0" prefWidth="971.0" promptText="You cannot change the creation time" />
+        <!--<Label text="Title: " GridPane.columnIndex="1" />-->
+        <HBox>
+            <Label text="Associated tour ID: " GridPane.columnIndex="1" />
+            <Label fx:id="logTourItem" GridPane.columnIndex="1" />
+        </HBox>
+        <Label fx:id="creationTime" prefHeight="79.0" prefWidth="971.0" text="The creation time is determined when you press 'Add this log'" />
         <TextField fx:id="report" prefHeight="79.0" prefWidth="971.0" promptText="Write the report here" />
         <TextField fx:id="distance" prefHeight="79.0" prefWidth="971.0" promptText="Write the distance here" />
         <TextField fx:id="totalTime" prefHeight="79.0" prefWidth="971.0" promptText="Write the total time here" />

@@ -1,18 +1,13 @@
 package views.tours;
 
 import businesslayer.JavaAppManager;
-import businesslayer.JavaAppManagerFactory;
-import businesslayer.MapQuest;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import lombok.SneakyThrows;
 import models.TourItem;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import views.MainWindowController;
+import viewmodels.tours.AddTourViewModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,13 +28,19 @@ public class AddTourWindowController implements Initializable {
 
     private ObservableList<TourItem> tourItems;
 
-    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
+    public AddTourViewModel viewModel = new AddTourViewModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //manager = JavaAppManagerFactory.GetManager();
-        //tourItems = FXCollections.observableArrayList();
-        //tourItems.addAll(manager.GetItems());
+        BindViewModel();
+    }
+
+    private void BindViewModel() {
+        name.textProperty().bindBidirectional(viewModel.getName());
+        origin.textProperty().bindBidirectional(viewModel.getOrigin());
+        destination.textProperty().bindBidirectional(viewModel.getDestination());
+        description.textProperty().bindBidirectional(viewModel.getDescription());
+        distance.textProperty().bindBidirectional(viewModel.getDistance());
     }
 
     public void initData(JavaAppManager manager, ObservableList<TourItem> tourItems) {
@@ -51,27 +52,7 @@ public class AddTourWindowController implements Initializable {
     //TODO: move stuff into viewmodel?
 
     public void addTour(ActionEvent actionEvent) throws SQLException, IOException {
-        double distanceValue = 0; //TODO: introduce more default values? Perhaps in AddLog too?
-        if (!distance.getText().isEmpty()) {
-            distanceValue = Double.parseDouble(distance.getText());
-        }
-        TourItem addedItem = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), distanceValue);
-        tourItems.add(addedItem);
-        //MapQuest.createStaticMapImage(addedItem); it's better to do that in the preview selected tour function
-        logger.info("Tour has been added");
-        //TODO I should return the parameters and Create the item with the manager in the mwc, right?
-
-        //tourItems.add(genItem); //TODO: get touritems from mwc? otherwise its obviously null because it hasn't been initialized
-        //TourItem genItem = manager.CreateTourItem("test", "test", "test", "test", (int)(1));
-        //TourItem genItem = new TourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
-        /*System.out.println(name.getText());
-        System.out.println(origin.getText());
-        System.out.println(destination.getText());
-        System.out.println(description.getText());
-        System.out.println(Double.parseDouble(distance.getText()));*/
-
+        viewModel.addTour(manager, tourItems);
     }
-
-    //separate function for additional attributes
 
 }

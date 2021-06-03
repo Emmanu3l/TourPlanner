@@ -3,23 +3,31 @@ package views.logs;
 import businesslayer.JavaAppManager;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.TourItem;
 import models.TourLog;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import viewmodels.logs.EditLogViewModel;
 import views.MainWindowController;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class EditLogWindowController {
+public class EditLogWindowController implements Initializable {
 
-    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
     public Button modifyLog;
-    public TextField logTourItem;
-    public TextField creationTime;
+
+    //public TextField logTourItem;
+    //public TextField creationTime;
+    public Label logTourItem;
+    public Label creationTime;
+
     public TextField report;
     public TextField distance;
     public TextField totalTime;
@@ -34,18 +42,27 @@ public class EditLogWindowController {
     private JavaAppManager manager;
     private ObservableList<TourLog> tourLogs;
 
-    public TourLog editLog(ActionEvent actionEvent) throws SQLException {
+    EditLogViewModel viewModel = new EditLogViewModel();
 
-        TourLog modifiedLog = new TourLog(currentLog.getId(), currentLog.getLogTourItem(), currentLog.getCreationTime(), report.getText(), Double.parseDouble(distance.getText()), totalTime.getText(), Integer.parseInt(rating.getText()), vehicleType.getText(), averageSpeed.getText(), Integer.parseInt(horsepower.getText()), Integer.parseInt(joule.getText()), description.getText());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        BindViewModel();
+    }
 
-        manager.EditTourLog(modifiedLog);
+    private void BindViewModel() {
+        report.textProperty().bindBidirectional(viewModel.getReport());
+        distance.textProperty().bindBidirectional(viewModel.getDistance());
+        totalTime.textProperty().bindBidirectional(viewModel.getTotalTime());
+        rating.textProperty().bindBidirectional(viewModel.getRating());
+        vehicleType.textProperty().bindBidirectional(viewModel.getVehicleType());
+        averageSpeed.textProperty().bindBidirectional(viewModel.getAverageSpeed());
+        horsepower.textProperty().bindBidirectional(viewModel.getHorsepower());
+        joule.textProperty().bindBidirectional(viewModel.getJoule());
+        description.textProperty().bindBidirectional(viewModel.getDescription());
+    }
 
-        //TourLog modifiedLog
-        tourLogs.remove(currentLog);
-        tourLogs.add(modifiedLog);
-
-        logger.info("Log has been modified");
-        return null;
+    public void editLog(ActionEvent actionEvent) throws SQLException {
+        viewModel.editLog(currentLog, manager, tourLogs);
     }
 
     public void initData(TourLog currentLog, JavaAppManager manager, ObservableList<TourLog> tourLogs) {
@@ -65,5 +82,8 @@ public class EditLogWindowController {
         joule.setText(currentLog.getJoule() + "");
         description.setText(currentLog.getDescription());
 
+        this.creationTime.setText(currentLog.getCreationTime().toString());
+
     }
+
 }

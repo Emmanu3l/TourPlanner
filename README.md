@@ -69,9 +69,13 @@ erstellen und implementieren der copyTour und copyLog Funktionen (ca. 4 Stunden)
 01.06.2021: Korrigieren des update tour sql statements. Rudimentäre pdf Generierung. Beibehalten der existierenden Werte beim bearbeiten einer Tour. 
 Mehr MVVM Aspekte. Fortsetzung der Implementierung von modify log. (ca. 3 Stunden)
 
-02.06.2021: Weiter daran arbeiten, dass MVVM eingehalten wird
+02.06.2021: Weiter daran arbeiten, dass MVVM eingehalten wird (ca. 2 Stunden)
 
-Lessons learned: von nun zum importieren von libraries "from maven" nutzen, das kann ganze Arbeitstage sparen
+03.06.2021: MVVM Aspekte bei AddTour, EditTour, AddLog und EditLog, polishing von anderen Aspekten bei editTour und editLog (alte Werte werden automatisch in die Textfelder eingefügt). Implementieren aller ViewModels. Anschließend die Erkenntis, dass 
+man für logs und tours nur jeweils ein viewmodel braucht -> korrigieren. (ca. 5 Stunden)
+
+Lessons learned: von nun zum importieren von libraries *from maven* nutzen, das kann ganze Arbeitstage sparen
+Ich hätte für Logs und Tours jeweils nur ein viewmodel erstellen müssen, nicht zwei für add und edit (TODO: korrigieren).
 
 todo: implementierung von viewmodels
 

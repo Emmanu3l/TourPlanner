@@ -126,11 +126,15 @@ public class MainWindowController implements Initializable {
     private TourItem currentItem;
     private JavaAppManager manager;
 
-    public MainWindowViewModel viewModel = new MainWindowViewModel();
-
     static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
 
     private TourLog currentLog;
+
+    public MainWindowViewModel viewModel = new MainWindowViewModel();
+
+    public void BindViewModel() {
+        searchField.textProperty().bindBidirectional(viewModel.getSearchField());
+    }
 
     @SneakyThrows
     @Override
@@ -144,6 +148,7 @@ public class MainWindowController implements Initializable {
         FormatCells();
         SetCurrentItem();
         SetCurrentLog();
+        BindViewModel();
         //PreviewCurrentItem();
 
         PDFGenerator.generatePDF(tourItems.size(), tourLogs.size());
@@ -151,7 +156,7 @@ public class MainWindowController implements Initializable {
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         addLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
-        previewCurrentItem.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull()); //TODO
+        previewCurrentItem.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         removeTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         modifyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         copyTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
@@ -251,7 +256,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void searchAction() throws SQLException {
-        viewModel.search(tourItems, manager, searchField);
+        viewModel.search(tourItems, manager/*, searchField*/);
     }
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
@@ -276,7 +281,7 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Log window has been opened");
+        logger.info("Log window has been opened.");
     }
 
     public void removeLogAction() throws SQLException {
@@ -300,7 +305,7 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Modify log window has been opened");
+        logger.info("Modify log window has been opened.");
     }
 
     public void addTourAction(ActionEvent actionEvent) {
@@ -310,7 +315,7 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Tour window has been opened");
+        logger.info("Tour window has been opened.");
     }
 
     public void removeTourAction() throws SQLException {
@@ -335,7 +340,7 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("Modify tour window has been opened");
+        logger.info("Modify tour window has been opened.");
     }
 
     public FXMLLoader loadFXML(String fxmlName, String title) throws IOException {
@@ -358,20 +363,6 @@ public class MainWindowController implements Initializable {
     }
 
     public void setPreviewImage() throws IOException {
-        Stage stage = new Stage();
-        String imagePath = MapQuest.createStaticMapImage(currentItem);
-        InputStream stream = new FileInputStream(imagePath);
-        Image image = new Image(stream);
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-        imageView.setPreserveRatio(true);
-        //imageView.setFitWidth(600); //optional
-        imageView.fitWidthProperty().bind(stage.widthProperty());
-        imageView.fitHeightProperty().bind(stage.heightProperty());
-        Group root = new Group(imageView);
-        Scene scene = new Scene(root);
-        stage.setTitle("Tour map");
-        stage.setScene(scene);
-        stage.show();
+        viewModel.previewImage(currentItem);
     }
 }

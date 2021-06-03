@@ -3,22 +3,23 @@ package views.logs;
 import businesslayer.JavaAppManager;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.TourItem;
 import models.TourLog;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import views.MainWindowController;
+import viewmodels.logs.AddLogViewModel;
 
+import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class AddLogWindowController {
+public class AddLogWindowController implements Initializable {
     //du wirst dann den parameter LocalDateTime.now() für die creationTime brauchen, siehe genItem (auskommentiert)
 
-    public TextField logTourItem;
-    public TextField creationTime;
+    public Label logTourItem;
+    public Label creationTime;
     public TextField report;
     public TextField distance;
     public TextField totalTime;
@@ -36,23 +37,41 @@ public class AddLogWindowController {
     private ObservableList<TourLog> tourLogs;
     private TourItem currentItem;
 
-    static Logger logger = LogManager.getLogger(MainWindowController.class.getName());
+    public AddLogViewModel viewModel = new AddLogViewModel();
+
 
     //TODO: creation time und log tour items sollten unveränderlich sein, aber trotzdem in der ansicht angezeigt werden
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        BindViewModel();
+    }
+
+    private void BindViewModel() {
+        report.textProperty().bindBidirectional(viewModel.getReport());
+        distance.textProperty().bindBidirectional(viewModel.getDistance());
+        totalTime.textProperty().bindBidirectional(viewModel.getTotalTime());
+        rating.textProperty().bindBidirectional(viewModel.getRating());
+        vehicleType.textProperty().bindBidirectional(viewModel.getVehicleType());
+        averageSpeed.textProperty().bindBidirectional(viewModel.getAverageSpeed());
+        horsepower.textProperty().bindBidirectional(viewModel.getHorsepower());
+        joule.textProperty().bindBidirectional(viewModel.getJoule());
+        description.textProperty().bindBidirectional(viewModel.getDescription());
+    }
 
     public void initData(JavaAppManager manager, ObservableList<TourLog> tourLogs, TourItem currentItem) {
         this.manager = manager;
         this.tourLogs = tourLogs;
         this.currentItem = currentItem;
+
+        this.logTourItem.setText(currentItem.getId().toString());
     }
 
     public void addLog(ActionEvent actionEvent) throws SQLException {
         //TourItem genLog = manager.CreateTourItem(name.getText(), origin.getText(), destination.getText(), description.getText(), Double.parseDouble(distance.getText()));
         //tourLogs.add(genLog);
+        viewModel.addLog(manager, currentItem, tourLogs);
 
-        TourLog addedLog = manager.CreateTourLog(currentItem, LocalDateTime.now(), report.getText(), Double.parseDouble(distance.getText()), totalTime.getText(), Integer.parseInt(rating.getText()), vehicleType.getText(), averageSpeed.getText(), Integer.parseInt(horsepower.getText()), Integer.parseInt(joule.getText()), description.getText());
-        tourLogs.add(addedLog);
-        logger.info("Log has been added");
     }
 
 }
