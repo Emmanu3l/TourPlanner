@@ -22,7 +22,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     private final String SQL_INSERT_NEW_ITEMLOG = "INSERT INTO public.\"TourLogs\" (\"TourItemId\", \"CreationTime\", \"Report\", \"Distance\", \"TotalTime\", \"Rating\", \"VehicleType\", \"AverageSpeed\", \"Horsepower\", \"Joule\", \"Description\") VALUES (CAST(? AS INTEGER), ?, ?, CAST(? AS DOUBLE PRECISION), ?, CAST(? AS INTEGER), ?, ?, CAST(? AS INTEGER), CAST(? AS INTEGER), ?);";
     private final String SQL_GET_ALL_LOGS = "SELECT * FROM public.\"TourLogs\";"; //added
     private final String SQL_REMOVE_LOG = "DELETE FROM public.\"TourLogs\" WHERE \"Id\"=CAST(? AS INTEGER);";
-    private final String SQL_UPDATE_LOG = "UPDATE public.\"TourLogs\" SET \"TourItemId\"=?, \"CreationTime\"=?, \"Report\"=?, \"Distance\"=CAST(? AS DOUBLE PRECISION), \"TotalTime\"=?, \"Rating\"=CAST(? AS INTEGER), \"VehicleType\"=?, \"AverageSpeed\"=?, \"Horsepower\"=CAST(? AS INTEGER), \"Joule\"=CAST(? AS INTEGER), \"Description\"=? WHERE \"Id\"=CAST(? AS INTEGER);";
+    private final String SQL_UPDATE_LOG = "UPDATE public.\"TourLogs\" SET \"TourItemId\"=CAST(? AS INTEGER), \"CreationTime\"=?, \"Report\"=?, \"Distance\"=CAST(? AS DOUBLE PRECISION), \"TotalTime\"=?, \"Rating\"=CAST(? AS INTEGER), \"VehicleType\"=?, \"AverageSpeed\"=?, \"Horsepower\"=CAST(? AS INTEGER), \"Joule\"=CAST(? AS INTEGER), \"Description\"=? WHERE \"Id\"=CAST(? AS INTEGER);";
 
     private IDatabase database;
     private ITourItemDAO tourItemDAO;
