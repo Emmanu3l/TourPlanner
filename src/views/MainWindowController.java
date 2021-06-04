@@ -1,22 +1,21 @@
 package views;
 
+import businesslayer.ImportExport.Export;
+import businesslayer.ImportExport.Import;
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
-import businesslayer.MapQuest;
 import businesslayer.PDFGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -25,17 +24,17 @@ import org.apache.logging.log4j.Logger;
 import models.TourItem;
 import models.TourLog;
 import viewmodels.MainWindowViewModel;
+import viewmodels.tours.AddTourViewModel;
 import views.logs.AddLogWindowController;
 import views.logs.EditLogWindowController;
 import views.tours.AddTourWindowController;
 import views.tours.EditTourWindowController;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -364,5 +363,22 @@ public class MainWindowController implements Initializable {
 
     public void setPreviewImage() throws IOException {
         viewModel.previewImage(currentItem);
+    }
+
+    public void importAction(ActionEvent actionEvent) throws IOException, SQLException {
+        FileChooser fileChooser = new FileChooser();
+        File filename = fileChooser.showOpenDialog(null);
+        List<TourItem> importedTours = Import.importTours(filename.getAbsolutePath());
+        for (TourItem tour: importedTours) {
+            manager.CreateTourItem(tour.getName(), tour.getOrigin(), tour.getDestination(), tour.getDescription(), tour.getDistance());
+            tourItems.add(tour);
+        }
+        //tourItems.addAll(importedTours);
+
+    }
+
+    public void exportAction(ActionEvent actionEvent) throws IOException {
+        //Export.exportTour(listTourItems.getItems());
+        Export.exportTours(listTourItems.getItems());
     }
 }

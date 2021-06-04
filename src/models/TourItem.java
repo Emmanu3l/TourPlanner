@@ -1,6 +1,8 @@
 package models;
 
 import businesslayer.MapQuest;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +20,8 @@ public class TourItem {
     @Getter @Setter private double Distance;
 
     //TODO: i assume i should set the distance via api request, but i'll keep it like that for now
-    public TourItem(Integer id, String name, String origin, String destination, String description, double distance) {
+    @JsonCreator
+    public TourItem(@JsonProperty("id") Integer id, @JsonProperty("name") String name, @JsonProperty("origin") String origin, @JsonProperty("destination") String destination, @JsonProperty("description") String description, @JsonProperty("distance") double distance) {
         Id = id;
         Name = name;
         Origin = origin;

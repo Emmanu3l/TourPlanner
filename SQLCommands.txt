@@ -1,5 +1,5 @@
-CREATE TABLE "TourItems" ("Id" bigserial NOT NULL, "Name" text, "Origin" text, "Destination" text, "Description" text, "Distance" double precision);
-CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL, "TourItemId" integer, "CreationTime" text, "Report" text, "Distance" double precision, "TotalTime" text, "Rating" integer, "VehicleType" text, "AverageSpeed" text, "Horsepower" integer, "Joule" integer, "Description" text);
+CREATE TABLE "TourItems" ("Id" bigserial NOT NULL PRIMARY KEY, "Name" text, "Origin" text, "Destination" text, "Description" text, "Distance" double precision);
+CREATE TABLE "TourLogs" ("Id" bigserial NOT NULL PRIMARY KEY, "TourItemId" integer, "CreationTime" text, "Report" text, "Distance" double precision, "TotalTime" text, "Rating" integer, "VehicleType" text, "AverageSpeed" text, "Horsepower" integer, "Joule" integer, "Description" text, CONSTRAINT "Tour_fkey" FOREIGN KEY ("TourItemId") REFERENCES "TourItems" ("Id") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE);
 
 SELECT * FROM public."TourItems";
 SELECT * FROM public."TourLogs";

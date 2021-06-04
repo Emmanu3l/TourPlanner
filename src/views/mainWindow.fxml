@@ -7,32 +7,14 @@
 <VBox prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainWindowController">
     <MenuBar>
         <Menu text="File">
-            <MenuItem text="Bla" />
-            <MenuItem text="Bli" />
-            <MenuItem text="Blu" />
-            <MenuItem text="Ble" />
-            <MenuItem text="Blo" />
+            <MenuItem fx:id="import" onAction="#importAction" text="Import Files" />
+            <MenuItem fx:id="export" onAction="#exportAction" text="Export Files" />
         </Menu>
         <Menu text="Edit">
-            <MenuItem text="Bla" />
-            <MenuItem text="Bli" />
-            <MenuItem text="Blu" />
-            <MenuItem text="Ble" />
-            <MenuItem text="Blo" />
         </Menu>
         <Menu text="Options">
-            <MenuItem text="Bla" />
-            <MenuItem text="Bli" />
-            <MenuItem text="Blu" />
-            <MenuItem text="Ble" />
-            <MenuItem text="Blo" />
         </Menu>
         <Menu text="Help">
-            <MenuItem text="Bla" />
-            <MenuItem text="Bli" />
-            <MenuItem text="Blu" />
-            <MenuItem text="Ble" />
-            <MenuItem text="Blo" />
         </Menu>
     </MenuBar>
     <HBox>
