@@ -7,9 +7,6 @@ import models.TourItem;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +61,7 @@ public class TourItemPostgresDAO implements ITourItemDAO {
     }
 
     @Override
-    public void EditItem(Integer id, TourItem modifiedItem) throws SQLException {
+    public TourItem EditItem(Integer id, TourItem modifiedItem) throws SQLException {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(modifiedItem.getName());
         parameters.add(modifiedItem.getOrigin());
@@ -73,5 +70,6 @@ public class TourItemPostgresDAO implements ITourItemDAO {
         parameters.add(modifiedItem.getDistance());
         parameters.add(id);
         database.Update(SQL_UPDATE_ITEM, parameters);
+        return FindById(id);
     }
 }

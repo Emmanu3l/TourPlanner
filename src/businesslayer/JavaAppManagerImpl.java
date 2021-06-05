@@ -70,14 +70,14 @@ public class JavaAppManagerImpl implements JavaAppManager {
     }
 
     @Override
-    public void EditTourItem(Integer id, TourItem modifiedItem) throws SQLException {
+    public TourItem EditTourItem(Integer id, TourItem modifiedItem) throws SQLException {
         ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
-        tourItemDAO.EditItem(id, modifiedItem);
+        return tourItemDAO.EditItem(id, modifiedItem);
     }
 
     @Override
-    public void EditTourLog(TourLog modifiedLog) throws SQLException {
+    public TourLog EditTourLog(TourLog modifiedLog) throws SQLException {
         ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
-        tourLogDAO.EditLog(modifiedLog);
+        return tourLogDAO.EditLog(modifiedLog);
     }
 }

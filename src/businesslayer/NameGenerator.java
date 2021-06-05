@@ -21,17 +21,17 @@ public class NameGenerator {
                             "ya", "yu", "yo",
                             "ra", "ri", "ru", "re", "ro",
                             "wa", "wo"};
-        String name = "";
+        StringBuilder name = new StringBuilder();
 
         // mindestens 2 silben
-        name += getRandom(syllables);
-        name += getRandom(syllables);
+        name.append(getRandom(syllables));
+        name.append(getRandom(syllables));
 
         while (name.length() < nameLength) {
-            name += getRandom(syllables);
+            name.append(getRandom(syllables));
         }
 
-        return name;
+        return name.toString();
     }
 
     private static String getRandom(String[] array) {

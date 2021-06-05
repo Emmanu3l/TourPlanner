@@ -65,7 +65,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
     }
 
     @Override
-    public void EditLog(TourLog modifiedLog) throws SQLException {
+    public TourLog EditLog(TourLog modifiedLog) throws SQLException {
         //TODO:
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(modifiedLog.getLogTourItem().getId());
@@ -82,6 +82,7 @@ public class TourLogPostgresDAO implements ITourLogDAO {
 
         parameters.add(modifiedLog.getId());
         database.Update(SQL_UPDATE_LOG, parameters);
+        return FindById(modifiedLog.getId());
     }
 
 

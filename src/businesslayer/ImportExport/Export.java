@@ -15,13 +15,14 @@ import java.util.List;
 
 public class Export {
 
-    public static void exportTours(List<TourItem> tourItems) throws IOException {
+    public static String exportTours(List<TourItem> tourItems) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
 
         TypeReference<List<TourItem>> typeReference = new TypeReference<List<TourItem>>() {};
-        objectMapper.writerFor(typeReference).writeValue(new File(ConfigurationManager.GetConfigProperty("FilePath") + LocalDateTime.now().format(formatter) + ".json"), tourItems);
-
+        String path = ConfigurationManager.GetConfigProperty("FilePath") + LocalDateTime.now().format(formatter) + ".json";
+        objectMapper.writerFor(typeReference).writeValue(new File(path), tourItems);
+        return path;
     }
 
 }

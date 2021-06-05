@@ -77,6 +77,8 @@ man für logs und tours nur jeweils ein viewmodel braucht -> korrigieren. (ca. 5
 04.06.2021: Modifizieren der Tabellen sodass cascade delete funktioniert (TODO: assoziierte logs aus dem gui löschen ohne neustart -> refresh all? oder suchen und löschen?). 
 Implementieren von Import und Export. (ca. 4 Stunden)
 
+05.06.2021: Implementieren von 20 Unit-Tests (ca. 5 Stunden)
+
 Lessons learned: von nun zum importieren von libraries *from maven* nutzen, das kann ganze Arbeitstage sparen
 Ich hätte für Logs und Tours jeweils nur ein viewmodel erstellen müssen, nicht zwei für add und edit (TODO: korrigieren).
 

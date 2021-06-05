@@ -30,6 +30,8 @@ public class PDFGenerator {
 
     }
 
+    //TOOD: make tour specific report with map image
+
     public static void addedTour() {
 
     }

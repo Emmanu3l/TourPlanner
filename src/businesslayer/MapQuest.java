@@ -20,6 +20,7 @@ public class MapQuest {
         //TODO: these two variables could be needed by every method in this class. Turn into class variables?
         String resourceURL = "https://www.mapquestapi.com/staticmap/v5/map";
         String key = ConfigurationManager.GetConfigProperty("MapQuestAPIKey");
+        //TODO: shouldn't the api call be in the data access layer?
 
         String requestUrl = resourceURL + "?start=" + tourItem.getOrigin() + "&end=" + tourItem.getDestination() + "&size=600,400@2x" + "&key=" + key;
 

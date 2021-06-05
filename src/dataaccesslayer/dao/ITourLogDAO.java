@@ -16,5 +16,5 @@ public interface ITourLogDAO {
 
     void RemoveLog(Integer id) throws SQLException;
 
-    void EditLog(TourLog modifiedLog) throws SQLException;
+    TourLog EditLog(TourLog modifiedLog) throws SQLException;
 }

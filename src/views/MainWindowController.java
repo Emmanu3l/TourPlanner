@@ -1,5 +1,6 @@
 package views;
 
+import businesslayer.ConfigurationManager;
 import businesslayer.ImportExport.Export;
 import businesslayer.ImportExport.Import;
 import businesslayer.JavaAppManager;
@@ -367,6 +368,7 @@ public class MainWindowController implements Initializable {
 
     public void importAction(ActionEvent actionEvent) throws IOException, SQLException {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(ConfigurationManager.GetConfigProperty("FilePath")));
         File filename = fileChooser.showOpenDialog(null);
         List<TourItem> importedTours = Import.importTours(filename.getAbsolutePath());
         for (TourItem tour: importedTours) {

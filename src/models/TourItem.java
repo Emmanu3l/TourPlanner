@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class TourItem {
 
@@ -36,4 +37,28 @@ public class TourItem {
         return MapQuest.createStaticMapImage(this);
     }*/
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TourItem tourItem = (TourItem) o;
+        return Double.compare(tourItem.Distance, Distance) == 0 && Id.equals(tourItem.Id) && Name.equals(tourItem.Name) && Origin.equals(tourItem.Origin) && Destination.equals(tourItem.Destination) && Description.equals(tourItem.Description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, Name, Origin, Destination, Description, Distance);
+    }
+
+    @Override
+    public String toString() {
+        return "TourItem{" +
+                "Id=" + Id +
+                ", Name='" + Name + '\'' +
+                ", Origin='" + Origin + '\'' +
+                ", Destination='" + Destination + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Distance=" + Distance +
+                '}';
+    }
 }

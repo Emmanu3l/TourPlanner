@@ -7,50 +7,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class TourItemTest {
 
     @Test
-    void setId() {
+    void testEquals() {
+        TourItem tourItem = new TourItem(1, "name", "origin", "destination", "description", 1.0);
+        TourItem tourItem2 = new TourItem(1, "name", "origin", "destination", "description", 1.0);
+        assertEquals(tourItem, tourItem2);
     }
 
     @Test
-    void setName() {
+    void testHashCode() {
+        TourItem tourItem = new TourItem(1, "name", "origin", "destination", "description", 1.0);
+        TourItem tourItem2 = new TourItem(1, "name", "origin", "destination", "description", 1.0);
+        assertEquals(tourItem.hashCode(), tourItem2.hashCode());
     }
 
     @Test
-    void setOrigin() {
-    }
-
-    @Test
-    void setDestination() {
-    }
-
-    @Test
-    void setDescription() {
-    }
-
-    @Test
-    void setDistance() {
-    }
-
-    @Test
-    void getId() {
-    }
-
-    @Test
-    void getName() {
-    }
-
-    @Test
-    void getOrigin() {
-    }
-
-    @Test
-    void getDestination() {
-    }
-
-    @Test
-    void getDescription() {
-    }
-
-    @Test
-    void getDistance() {
+    void testToString() {
+        TourItem tourItem = new TourItem(1, "name", "origin", "destination", "description", 1.0);
+        assertNotNull(tourItem.toString());
     }
 }
