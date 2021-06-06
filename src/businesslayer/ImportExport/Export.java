@@ -3,11 +3,9 @@ package businesslayer.ImportExport;
 import businesslayer.ConfigurationManager;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import models.TourItem;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +17,7 @@ public class Export {
         ObjectMapper objectMapper = new ObjectMapper();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
 
-        TypeReference<List<TourItem>> typeReference = new TypeReference<List<TourItem>>() {};
+        TypeReference<List<TourItem>> typeReference = new TypeReference<>() {};
         String path = ConfigurationManager.GetConfigProperty("FilePath") + LocalDateTime.now().format(formatter) + ".json";
         objectMapper.writerFor(typeReference).writeValue(new File(path), tourItems);
         return path;
