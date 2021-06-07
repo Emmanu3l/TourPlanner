@@ -81,9 +81,10 @@ Implementieren von Import und Export. (ca. 4 Stunden)
 
 06.06.2021: Verfassen der Absätze, die in der Checkliste verlangt werden (ca. 2 Stunden)
 
-reports: initial state, added log/tour, end state. also: specific tour report button. all called from vm. tour reports folder?
+07.06.2021: Kleinere Verbesserungen, Implementierung eines spezifischen Tour-Reports (im file menu) (ca. 2 Stunden)
 
-*App Architektur*
+**App Architektur:**
+
 Layer, Layer Inhalte/Funktionalität
 Die vorhandenen Layer sind der Business-Layer (BL), der Data-Access-Layer (DAL), der Model-Layer, der View-Layer und 
 zu guter Letzt der View-Model Layer (VM).
@@ -96,7 +97,8 @@ die spezifischen Interaktionen: Add/Edit Tour/Log.
 Im VM sind die Methoden, die vom User über den View aufgerufen werden. 
 Das sind beispielsweise Features die Methoden die im BL oder DAL enthalten sind nutzen.
 
-*Architektur, UX, und Library Entscheidungen*
+**Architektur, UX, und Library Entscheidungen:**
+
 Was UX betrifft habe ich mich vorrangig dafür entschieden mich an dem Beispielbild in der Aufgabenstellung zu orientieren. 
 Was zusätzliche Funktionalität betrifft habe ich versucht das Interface simpel zu halten und Features die zusammen gehören zu gruppieren.
 Was Libraries betrifft habe ich mich für Jackson entschieden, da ich es auch schon beim Projekt in SWE1 für JSON verwendet habe.
@@ -104,12 +106,14 @@ Log4j und iTextPDF habe ich gewählt, weil sie in der LVA empfohlen/vorgeschlage
 Zudem habe ich nach ein wenig Recherche festegestellt, dass sie bezüglich Java gewissermaßen der de facto Standard in ihren jeweiligen Kategorien sind.
 Zu Architektur Entscheidungen kann ich nur sagen, dass ich versucht habe MVVM in der vorhandenen Zeit bestmöglich umzusetzen.
 
-*Beschreibung des Implementierten Design Patterns*
+**Beschreibung des Implementierten Design Patterns:**
+
 Das verwendete Design Pattern ist das 'Factory method design pattern'. Es ist praktisch, da es zu einer losen Kopplung führt. 
 Dadurch sind die Änderungen von einzelnen Klassen, wie es oft bei der Erweiterung oder Modifizierung der Attribute 
 der TourItem und TourLog Klassen vonnöten war, mit weniger Aufwand verbunden.
 
-*Unit Test Entscheidungen*
+**Unit Test Entscheidungen:**
+
 Import und Export sind ein wichtiges Feature wo jedoch leicht etwas schiefgehen kann, weshalb ich mich dafür entschieden habe es zu testen. 
 Gleiches gilt für MapQuest und den PDFGenerator. Alle drei Klassen haben gemeinsam, dass ihre Methoden static und isoliert von anderen sind, 
 weshalb sie zusätzlich ohne Komplikationen testbar sind.
@@ -118,15 +122,25 @@ Somit ist es praktisch um indirekt alle diese Klassen zu testen.
 Der ConfigurationManager ist zwar simpel, jedoch würde eine Exception hier gravierend sein, weshalb ich auch diesen teste.
 Zu guter letzt habe ich die TourItem und TourLog Klassen getestet um sicherzustellen, dass hier keine Probleme auftreten, 
 da die Objekte immerhin ausgiebig in den anderen Testklassen verwendet werden (bspw. in Kombination mit dem JavaAppManager oder assertEquals).
+DAL lässt sich mittels mocking auch testen, andererseits werden diese Klassen beim JavaAppManagerImplTest schon indirekt getestet, daher halte ich dies nicht für nötig.
 
-*Unique Feature*
+**Lessons learned:**
+
+Von nun zum Importieren von Libraries *from maven* nutzen, das kann ganze Arbeitstage sparen. 
+Ich hätte für Logs und Tours jeweils nur ein ViewModel erstellen müssen, nicht zwei für add und edit. (TODO: korrigieren).
+
+**Unique Feature:**
+
 N/A (yet?)
 Launch4j wurde in Betracht gezogen.
 
-*Lessons learned:* Von nun zum Importieren von Libraries *from maven* nutzen, das kann ganze Arbeitstage sparen. 
-Ich hätte für Logs und Tours jeweils nur ein ViewModel erstellen müssen, nicht zwei für add und edit. (TODO: korrigieren).
+**Github Link:**
 
-TODO:
-sicherstellung von mvvm
-.jar to .exe mittels jlink und launch4j
-die logs sollten detailreicher angezeigt werden (nicht nur eine spalte/eigenschaft)
+https://github.com/Emmanu3l/TourPlanner
+
+*Woran ich gearbeitet hätte, wenn es sich zeitlich ausgegangen wäre:*
+* MVVM Aspekte verbessern
+* .jar to .exe mittels jlink und launch4j
+* Die Logs sollten detailreicher angezeigt werden (nicht nur eine Spalte/Eigenschaft)
+* Report Generierung erweitern
+* reports: initial state, added log/tour, end state. all called from vm. tour reports folder?

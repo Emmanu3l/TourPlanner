@@ -1,9 +1,13 @@
 package businesslayer;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import models.TourItem;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 
@@ -20,7 +24,7 @@ public class PDFGenerator {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("TourPlannerReport.pdf"));
             document.open();
-            document.add(new Paragraph("Information on the Tour Planner"));
+            document.add(new Paragraph("Tour Planner Summary:"));
             document.add(new Paragraph("Number of Tours: " + tourCount));
             document.add(new Paragraph("Number of Logs: " + logCount));
             document.close();
@@ -31,6 +35,31 @@ public class PDFGenerator {
     }
 
     //TOOD: make tour specific report with map image
+
+    public static String tourPDF(TourItem tourItem) {
+        String path = "ID" + tourItem.getId() + ".pdf";
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(path));
+            document.open();
+            document.add(new Paragraph("Tour Report:"));
+            document.add(new Paragraph("ID: " + tourItem.getId()));
+            document.add(new Paragraph("Name: " + tourItem.getName()));
+            document.add(new Paragraph("Origin: " + tourItem.getOrigin()));
+            document.add(new Paragraph("Destination: " + tourItem.getDestination()));
+            document.add(new Paragraph("Description: " + tourItem.getDescription()));
+            document.add(new Paragraph("Distance: " + tourItem.getDistance()));
+            document.add(new Paragraph("Image: "));
+            String imagePath = MapQuest.createStaticMapImage(tourItem);
+            Image image = Image.getInstance(imagePath);
+            image.scaleToFit(500, 500);
+            document.add(image);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return path;
+    }
 
     public static void addedTour() {
 

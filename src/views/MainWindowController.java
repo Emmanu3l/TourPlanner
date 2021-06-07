@@ -120,6 +120,7 @@ public class MainWindowController implements Initializable {
     public ImageView previewImage;
     public Button generateImage;
     public Label previewId;
+    public MenuItem report;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -165,6 +166,8 @@ public class MainWindowController implements Initializable {
         modifyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         copyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
+
+        report.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
 
     }
 
@@ -367,14 +370,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void importAction(ActionEvent actionEvent) throws IOException, SQLException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(ConfigurationManager.GetConfigProperty("FilePath")));
-        File filename = fileChooser.showOpenDialog(null);
-        List<TourItem> importedTours = Import.importTours(filename.getAbsolutePath());
-        for (TourItem tour: importedTours) {
-            manager.CreateTourItem(tour.getName(), tour.getOrigin(), tour.getDestination(), tour.getDescription(), tour.getDistance());
-            tourItems.add(tour);
-        }
+        viewModel.importFile(manager, tourItems);
         //tourItems.addAll(importedTours);
 
     }
@@ -382,5 +378,12 @@ public class MainWindowController implements Initializable {
     public void exportAction(ActionEvent actionEvent) throws IOException {
         //Export.exportTour(listTourItems.getItems());
         Export.exportTours(listTourItems.getItems());
+        logger.info("Tour(s) have been exported.");
+    }
+
+    public void reportAction(ActionEvent actionEvent) {
+        //viewModel.reportTour(manager, currentItem);
+        PDFGenerator.tourPDF(currentItem);
+        logger.info("Tour report has been generated.");
     }
 }

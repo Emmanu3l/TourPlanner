@@ -1,5 +1,7 @@
 package viewmodels;
 
+import businesslayer.ConfigurationManager;
+import businesslayer.ImportExport.Import;
 import businesslayer.JavaAppManager;
 import businesslayer.MapQuest;
 import businesslayer.NameGenerator;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Getter;
 import models.TourItem;
@@ -19,10 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import views.MainWindowController;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -106,5 +106,17 @@ public class MainWindowViewModel {
         stage.setScene(scene);
         stage.show();
         logger.info("Image has been generated.");
+    }
+
+    public void importFile(JavaAppManager manager, ObservableList<TourItem> tourItems) throws IOException, SQLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(ConfigurationManager.GetConfigProperty("FilePath")));
+        File filename = fileChooser.showOpenDialog(null);
+        List<TourItem> importedTours = Import.importTours(filename.getAbsolutePath());
+        for (TourItem tour: importedTours) {
+            manager.CreateTourItem(tour.getName(), tour.getOrigin(), tour.getDestination(), tour.getDescription(), tour.getDistance());
+            tourItems.add(tour);
+        }
+        logger.info("File has been imported.");
     }
 }

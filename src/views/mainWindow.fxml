@@ -9,6 +9,7 @@
         <Menu text="File">
             <MenuItem fx:id="import" onAction="#importAction" text="Import Files" />
             <MenuItem fx:id="export" onAction="#exportAction" text="Export Files" />
+            <MenuItem fx:id="report" onAction="#reportAction" text="Create Report for current Tour" />
         </Menu>
         <Menu text="Edit">
         </Menu>
