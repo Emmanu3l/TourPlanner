@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import models.TourItem;
 import models.TourLog;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 
@@ -20,12 +21,14 @@ public class PDFGenerator {
     //read: https://kb.itextpdf.com/home/it7kb/examples/itext-7-jump-start-tutorial-chapter-1
     //and: http://tutorials.jenkov.com/java-itext/getting-started.html
 
-    public static void generatePDF(ObservableList<TourItem> tourItems, ObservableList<TourLog> tourLogs) {
+    public static String generatePDF(ObservableList<TourItem> tourItems, ObservableList<TourLog> tourLogs) {
+        String path = "";
         try {
+            path = ConfigurationManager.GetConfigProperty("ReportPath") + "TourPlannerReport.pdf";
             int tourCount = tourItems.size();
             int logCount = tourLogs.size();
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("TourPlannerReport.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path));
             document.open();
             document.add(new Paragraph("Tour Planner Summary:"));
             document.add(new Paragraph("Number of Tours: " + tourCount));
@@ -44,14 +47,15 @@ public class PDFGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return path;
     }
 
     //TOOD: make tour specific report with map image
 
     public static String tourPDF(TourItem tourItem) {
-        String path = "ID" + tourItem.getId() + ".pdf";
+        String path = "";
         try {
+            path = ConfigurationManager.GetConfigProperty("ReportPath") + "ID" + tourItem.getId() + ".pdf";
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(path));
             document.open();

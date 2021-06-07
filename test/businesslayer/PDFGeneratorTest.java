@@ -17,8 +17,8 @@ class PDFGeneratorTest {
     void generatePDF() {
         ObservableList<TourItem> tourItems = FXCollections.observableArrayList();
         ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
-        PDFGenerator.generatePDF(tourItems, tourLogs);
-        File file = new File("TourPlannerReport.pdf");
+        String path = PDFGenerator.generatePDF(tourItems, tourLogs);
+        File file = new File(path);
         assert(file.exists());
     }
 
