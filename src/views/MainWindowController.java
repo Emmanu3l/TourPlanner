@@ -152,7 +152,7 @@ public class MainWindowController implements Initializable {
         BindViewModel();
         //PreviewCurrentItem();
 
-        PDFGenerator.generatePDF(tourItems.size(), tourLogs.size());
+        PDFGenerator.generatePDF(tourItems, tourLogs);
 
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());

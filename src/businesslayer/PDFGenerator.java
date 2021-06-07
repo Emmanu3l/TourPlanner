@@ -1,13 +1,13 @@
 package businesslayer;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.collections.ObservableList;
 import models.TourItem;
+import models.TourLog;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 
@@ -19,8 +19,10 @@ public class PDFGenerator {
     //read: https://kb.itextpdf.com/home/it7kb/examples/itext-7-jump-start-tutorial-chapter-1
     //and: http://tutorials.jenkov.com/java-itext/getting-started.html
 
-    public static void generatePDF(int tourCount, int logCount) {
+    public static void generatePDF(ObservableList<TourItem> tourItems, ObservableList<TourLog> tourLogs) {
         try {
+            int tourCount = tourItems.size();
+            int logCount = tourLogs.size();
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("TourPlannerReport.pdf"));
             document.open();
@@ -61,11 +63,4 @@ public class PDFGenerator {
         return path;
     }
 
-    public static void addedTour() {
-
-    }
-
-    public static void appendParagraph() {
-
-    }
 }
