@@ -81,7 +81,8 @@ Implementieren von Import und Export. (ca. 4 Stunden)
 
 06.06.2021: Verfassen der Absätze, die in der Checkliste verlangt werden (ca. 2 Stunden)
 
-07.06.2021: Kleinere Verbesserungen, Implementierung eines spezifischen Tour-Reports (im file menu) (ca. 2 Stunden)
+07.06.2021: Kleinere Verbesserungen, Implementierung eines spezifischen Tour-Reports (im file menu), 
+Erweiterung des Summary-Reports, ein neuer Unit-Test (ca. 4 Stunden)
 
 **App Architektur:**
 

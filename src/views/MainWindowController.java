@@ -1,8 +1,6 @@
 package views;
 
-import businesslayer.ConfigurationManager;
 import businesslayer.ImportExport.Export;
-import businesslayer.ImportExport.Import;
 import businesslayer.JavaAppManager;
 import businesslayer.JavaAppManagerFactory;
 import businesslayer.PDFGenerator;
@@ -16,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -25,17 +22,14 @@ import org.apache.logging.log4j.Logger;
 import models.TourItem;
 import models.TourLog;
 import viewmodels.MainWindowViewModel;
-import viewmodels.tours.AddTourViewModel;
 import views.logs.AddLogWindowController;
 import views.logs.EditLogWindowController;
 import views.tours.AddTourWindowController;
 import views.tours.EditTourWindowController;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -120,7 +114,8 @@ public class MainWindowController implements Initializable {
     public ImageView previewImage;
     public Button generateImage;
     public Label previewId;
-    public MenuItem report;
+    public MenuItem reportTour;
+    public MenuItem reportSummary;
 
     private ObservableList<TourItem> tourItems;
     private ObservableList<TourLog> tourLogs; //added
@@ -152,8 +147,6 @@ public class MainWindowController implements Initializable {
         BindViewModel();
         //PreviewCurrentItem();
 
-        PDFGenerator.generatePDF(tourItems, tourLogs);
-
         // log sollte nur generierbar sein wenn ein item ausgewählt ist
         genLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
         addLog.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
@@ -167,8 +160,7 @@ public class MainWindowController implements Initializable {
         removeLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
         copyLog.disableProperty().bind(listTourLogs.getSelectionModel().selectedItemProperty().isNull());
 
-        report.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
-
+        reportTour.disableProperty().bind(listTourItems.getSelectionModel().selectedItemProperty().isNull());
     }
 
     private void SetupListView() throws SQLException {
@@ -385,5 +377,10 @@ public class MainWindowController implements Initializable {
         //viewModel.reportTour(manager, currentItem);
         PDFGenerator.tourPDF(currentItem);
         logger.info("Tour report has been generated.");
+    }
+
+    public void reportSummaryAction(ActionEvent actionEvent) {
+        PDFGenerator.generatePDF(tourItems, tourLogs);
+        logger.info("Summary has been generated.");
     }
 }

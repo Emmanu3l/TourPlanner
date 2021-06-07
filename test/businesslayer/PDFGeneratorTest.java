@@ -7,6 +7,7 @@ import models.TourLog;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +19,15 @@ class PDFGeneratorTest {
         ObservableList<TourLog> tourLogs = FXCollections.observableArrayList();
         PDFGenerator.generatePDF(tourItems, tourLogs);
         File file = new File("TourPlannerReport.pdf");
+        assert(file.exists());
+    }
+
+    @Test
+    void tourPDF() throws SQLException {
+        JavaAppManager manager = JavaAppManagerFactory.GetManager();
+        TourItem tourItem = manager.CreateTourItem("name", "origin", "destination", "description", 1.0);
+        String path = PDFGenerator.tourPDF(tourItem);
+        File file = new File(path);
         assert(file.exists());
     }
 }

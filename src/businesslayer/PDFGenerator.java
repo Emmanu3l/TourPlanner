@@ -1,5 +1,6 @@
 package businesslayer;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
@@ -29,6 +30,16 @@ public class PDFGenerator {
             document.add(new Paragraph("Tour Planner Summary:"));
             document.add(new Paragraph("Number of Tours: " + tourCount));
             document.add(new Paragraph("Number of Logs: " + logCount));
+            for (TourItem tourItem: tourItems) {
+                document.add(new Paragraph("Tour with ID " + tourItem.getId()));
+                document.add(new Paragraph("Name: " + tourItem.getName()));
+                document.add(new Paragraph("Origin: " + tourItem.getOrigin()));
+                document.add(new Paragraph("Destination: " + tourItem.getDestination()));
+                document.add(new Paragraph("Description: " + tourItem.getDescription()));
+                document.add(new Paragraph("Distance: " + tourItem.getDistance()));
+                document.add(new Paragraph("Image: "));
+                document.add(Chunk.NEWLINE);
+            }
             document.close();
         } catch (Exception e) {
             e.printStackTrace();
